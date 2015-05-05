@@ -1,4 +1,4 @@
-# unichamado
+# tickit
 projeto do núcleo de desenvolvimento da unirn, 2015
 
 # README #
@@ -16,7 +16,7 @@ Set up Git on your machine if you haven't already.
 mkdir /path/to/your/project
 cd /path/to/your/project
 git init
-git remote add origin https://<user>@github.com/marciodavimm/unichamado.git
+git remote add origin https://<user>@github.com/marciodavimm/tickit.git
 
 
 ```
@@ -56,22 +56,3 @@ This README would normally document whatever steps are necessary to get your app
 * Version
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
