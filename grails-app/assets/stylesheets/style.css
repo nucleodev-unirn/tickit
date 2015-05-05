@@ -1,0 +1,30 @@
+.content-header > .breadcrumb{
+    position: static!important;
+    float: none!important;
+}
+
+/* ----------------------------------------------------------
+ *  Error Validate
+ *---------------------------------------------------------- */
+.error .form-control, .error .form-control:focus, .error .input-group-addon, .error .selectize-input{
+    border-color: #F35454!important;
+}
+
+.error .form-control:focus {
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(233, 102, 102, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(233, 102, 102, 0.6);
+}
+span.error{
+    font-weight: bold;
+}
+
+label.error, span.error {
+    color: #F35454;
+    font-size: 12px;
+}
+
+.error ul{
+    list-style-type: none;
+    padding-left: 0;
+}
