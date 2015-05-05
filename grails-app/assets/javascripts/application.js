@@ -7,15 +7,31 @@
 //
 //= require jquery
 //= require bootstrap
-//= require_tree .
+//= require app.min.js
 //= require_self
 
-if (typeof jQuery !== 'undefined') {
-	(function($) {
-		$('#spinner').ajaxStart(function() {
-			$(this).fadeIn();
-		}).ajaxStop(function() {
-			$(this).fadeOut();
-		});
-	})(jQuery);
-}
+var TICKIT = (function($) {
+
+	return {
+		init: init,
+		selectMenu: selectMenu
+	}
+
+	function init(){
+
+	}
+
+	function selectMenu(id){
+		var $opt = $("#"+id);
+		$(".sidebar-menu li.active").removeClass("active").find("ul").removeClass("menu-open").css('display','none')
+
+		$opt.parent().addClass('menu-open');
+		$opt.parent().parent().addClass('active');
+		$opt.addClass('active');
+	}
+
+})(jQuery);
+
+$(document).ready(function(){
+	TICKIT.init();
+});

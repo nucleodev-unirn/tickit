@@ -1,32 +1,42 @@
 package br.edu.unirn.nds.chamado.base
-
 import br.edu.unirn.nds.chamado.acesso.Usuario
-import br.edu.unirn.nds.chamado.pessoas.PessoaJuridica
 
 class EmpresaLocacao {
 
-    PessoaJuridica pessoaJuridica
+    String nome
+    String razaoSocial
+    String cpfCnpj
+
     String responsavelAtendimento
     String observacao
-    boolean ativo
+    Boolean ativo = Boolean.TRUE
 
-    Usuario cadastradoPor
     Date dateCreated
-    Usuario ultimaAtualizacaoPor
     Date lastUpdated
-    Usuario desativadoPor
     Date dataDesativacao
 
+    Usuario cadastradoPor
+    Usuario ultimaAtualizacaoPor
+    Usuario desativadoPor
+
     static constraints = {
-        pessoaJuridica()
+        nome()
+        razaoSocial nullable: true
+        cpfCnpj()
         responsavelAtendimento()
         observacao()
         ativo()
-        cadastradoPor ()
-        dateCreated ()
-        ultimaAtualizacaoPor ()
-        lastUpdated ()
-        desativadoPor ()
-        dataDesativacao ()
+
+        dateCreated attributes: [showInList: false]
+        lastUpdated attributes: [showInList: false]
+        cadastradoPor attributes: [ showInForm: false, showInList: false]
+        ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
+        desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
+        dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]
+    }
+
+    @Override
+    String toString() {
+        return nome
     }
 }

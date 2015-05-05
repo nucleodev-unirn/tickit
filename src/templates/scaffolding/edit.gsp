@@ -24,7 +24,7 @@
 						<g:link class="btn btn-default btn-box-tool" action="create"><i class="fa fa-plus"></i> <g:message code="default.new.label" args="[entityName]" /></g:link>
 					</div>
 				</div>
-				<div class="box-body">
+				<div class="box-body box-form">
 					<g:if test="\${flash.message}">
 						<div class="message" role="status">\${flash.message}</div>
 					</g:if>
@@ -36,9 +36,7 @@
 					</g:hasErrors>
 					<g:form class="form-horizontal" novalidate="novalidate" name="${propertyName}Form" url="[resource:${propertyName}, action:'update']" method="PUT" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
 						<g:hiddenField name="version" value="\${${propertyName}?.version}" />
-						<fieldset class="form">
-							<g:render template="form"/>
-						</fieldset>
+						<g:render template="form"/>
 					</g:form>
 				</div>
 				<div class="box-footer clearfix">
@@ -46,5 +44,10 @@
 				</div>
 			</div>
 		</section>
+	<g:javascript>
+        \$(document).ready(function(){
+            TICKIT.selectMenu("${domainClass.propertyName}Opt");
+        });
+	</g:javascript>
 	</body>
 </html>

@@ -12,7 +12,7 @@ class Chamado {
     String avaliacao
     String tags
 
-    boolean ativo
+    Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
     Date dateCreated
     Usuario ultimaAtualizacaoPor

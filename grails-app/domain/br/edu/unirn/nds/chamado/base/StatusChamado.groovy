@@ -9,7 +9,7 @@ class StatusChamado {
 
     String nome
     String descricao
-    boolean ativo
+    Boolean ativo = Boolean.TRUE
 
     Usuario cadastradoPor
     Date dateCreated

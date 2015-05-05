@@ -7,7 +7,7 @@ class ComentarioChamado {
     String comentario
     Chamado chamado
 
-    boolean ativo
+    Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
     Date dateCreated
     Usuario ultimaAtualizacaoPor

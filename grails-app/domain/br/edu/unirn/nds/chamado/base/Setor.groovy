@@ -6,23 +6,23 @@ class Setor {
 
     String nome
 
-    boolean ativo
-    Usuario cadastradoPor
+    Boolean ativo = Boolean.TRUE
+
     Date dateCreated
-    Usuario ultimaAtualizacaoPor
     Date lastUpdated
-    Usuario desativadoPor
     Date dataDesativacao
+
+    Usuario cadastradoPor
+    Usuario ultimaAtualizacaoPor
+    Usuario desativadoPor
 
     static constraints = {
         nome ()
-
         ativo ()
-        cadastradoPor ()
-        dateCreated ()
-        ultimaAtualizacaoPor ()
-        lastUpdated ()
-        desativadoPor ()
-        dataDesativacao ()
+
+        cadastradoPor attributes: [ showInForm: false, showInList: false]
+        ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
+        desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
+        dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]
     }
 }

@@ -8,7 +8,7 @@ class AlteracaoStatusEquipamento {
     StatusEquipamento statusEquipamento
     Equipamento equipamento
 
-    boolean ativo
+    Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
     Date dateCreated
     Usuario ultimaAtualizacaoPor

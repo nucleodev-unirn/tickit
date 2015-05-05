@@ -10,7 +10,7 @@ class AlteracaoStatusChamado {
     StatusChamado statusChamado
     String observacao
 
-    boolean ativo
+    Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
     Date dateCreated
     Usuario ultimaAtualizacaoPor

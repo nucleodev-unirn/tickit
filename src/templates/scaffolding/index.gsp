@@ -38,28 +38,35 @@
 							props = domainClass.properties.findAll { allowedNames.contains(it.name) && !excludedProps.contains(it.name) && it.type != null && !Collection.isAssignableFrom(it.type) && (domainClass.constrainedProperties[it.name] ? domainClass.constrainedProperties[it.name].display : true) }
 							Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
 							props.eachWithIndex { p, i ->
-								if (i < 6) {
+								cp = domainClass.constrainedProperties[p.name]
+								isVisible = cp?.attributes?.showInList != null?cp?.attributes?.showInList:true
+								if (isVisible) {
 									if (p.isAssociation()) { %>
 							<th><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}" /></th>
 							<%      } else { %>
 							<g:sortableColumn property="${p.name}" title="\${message(code: '${domainClass.propertyName}.${p.name}.label', default: '${p.naturalName}')}" />
 							<%  }   }   } %>
+							<th></th>
 						</tr>
 						</thead>
 						<tbody>
 						<g:each in="\${${propertyName}List}" status="i" var="${propertyName}">
 							<tr class="\${(i % 2) == 0 ? 'even' : 'odd'}">
 								<%  props.eachWithIndex { p, i ->
-									if (i == 0) { %>
-								<td><g:link action="show" id="\${${propertyName}.id}">\${fieldValue(bean: ${propertyName}, field: "${p.name}")}</g:link></td>
-								<%      } else if (i < 6) {
-									if (p.type == Boolean || p.type == boolean) { %>
+									cp = domainClass.constrainedProperties[p.name]
+									isVisible = cp?.attributes?.showInList != null?cp?.attributes?.showInList:true
+									if (isVisible) { %>
+								<%   if (p.type == Boolean || p.type == boolean) { %>
 								<td><g:formatBoolean boolean="\${${propertyName}.${p.name}}" /></td>
 								<%          } else if (p.type == Date || p.type == java.sql.Date || p.type == java.sql.Time || p.type == Calendar) { %>
-								<td><g:formatDate date="\${${propertyName}.${p.name}}" /></td>
+								<td><g:formatDate date="\${${propertyName}.${p.name}}" format="dd/MM/yyyy"/></td>
 								<%          } else { %>
 								<td>\${fieldValue(bean: ${propertyName}, field: "${p.name}")}</td>
 								<%  }   }   } %>
+								<td class="text-center">
+									<g:link class="btn btn-xs btn-default" action="edit" id="\${${propertyName}.id}"><i class="fa fa-pencil"></i></g:link>
+									<g:link class="btn btn-xs btn-danger" action="edit" id="\${${propertyName}.id}"><i class="glyphicon glyphicon-remove"></i></g:link>
+								</td>
 							</tr>
 						</g:each>
 						</tbody>
@@ -71,5 +78,10 @@
 			</div><!-- /.box -->
 
 		</section>
+	<g:javascript>
+        \$(document).ready(function(){
+            TICKIT.selectMenu("${domainClass.propertyName}Opt");
+        });
+	</g:javascript>
 	</body>
 </html>

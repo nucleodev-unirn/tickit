@@ -8,7 +8,7 @@ class EquipamentoSetor {
     Setor setor
     Equipamento equipamento
 
-    boolean ativo
+    Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
     Date dateCreated
     Usuario ultimaAtualizacaoPor

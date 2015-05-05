@@ -20,7 +20,7 @@
 				<div class="box-header with-border">
 					<h3 class="box-title"><g:message code="default.create.label" args="[entityName]" /></h3>
 				</div>
-				<div class="box-body">
+				<div class="box-body box-form">
 					<g:if test="\${flash.message}">
 						<div class="message" role="status">\${flash.message}</div>
 					</g:if>
@@ -31,9 +31,7 @@
 						</div>
 					</g:hasErrors>
 					<g:form class="form-horizontal" novalidate="novalidate" name="${propertyName}Form" url="[resource:${propertyName}, action:'save']" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
-					<fieldset class="form">
 						<g:render template="form"/>
-					</fieldset>
 					</g:form>
 				</div>
 				<div class="box-footer clearfix">
@@ -41,5 +39,10 @@
 				</div>
 			</div>
 		</section>
+	<g:javascript>
+        \$(document).ready(function(){
+            TICKIT.selectMenu("${domainClass.propertyName}Opt");
+        });
+	</g:javascript>
 	</body>
 </html>

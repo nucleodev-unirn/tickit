@@ -7,13 +7,15 @@ class ResponsavelChamado {
     Usuario responsavel
     Chamado chamado
 
-    boolean ativo
-    Usuario cadastradoPor
+    Boolean ativo = Boolean.TRUE
+
     Date dateCreated
-    Usuario ultimaAtualizacaoPor
     Date lastUpdated
-    Usuario desativadoPor
     Date dataDesativacao
+
+    Usuario cadastradoPor
+    Usuario ultimaAtualizacaoPor
+    Usuario desativadoPor
 
     static constraints = {
         responsavel()

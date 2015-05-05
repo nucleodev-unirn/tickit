@@ -13,17 +13,21 @@
 	props = domainClass.properties.findAll { persistentPropNames.contains(it.name) && !excludedProps.contains(it.name) && (domainClass.constrainedProperties[it.name] ? domainClass.constrainedProperties[it.name].display : true) }
 	Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
 	for (p in props) {
-		if (p.embedded) {
-			def embeddedPropNames = p.component.persistentProperties*.name
-			def embeddedProps = p.component.properties.findAll { embeddedPropNames.contains(it.name) && !excludedProps.contains(it.name) }
-			Collections.sort(embeddedProps, comparator.constructors[0].newInstance([p.component] as Object[]))
-			%><fieldset class="embedded"><legend><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}" /></legend><%
-				for (ep in p.component.properties) {
-					renderFieldForProperty(ep, p.component, "${p.name}.")
-				}
-			%></fieldset><%
-		} else {
-			renderFieldForProperty(p, domainClass)
+		def cpTemp = domainClass.constrainedProperties[p.name]
+		boolean isVisible = cpTemp?.attributes?.showInForm != null?cpTemp?.attributes?.showInForm:true
+		if(isVisible){
+			if (p.embedded) {
+				def embeddedPropNames = p.component.persistentProperties*.name
+				def embeddedProps = p.component.properties.findAll { embeddedPropNames.contains(it.name) && !excludedProps.contains(it.name) }
+				Collections.sort(embeddedProps, comparator.constructors[0].newInstance([p.component] as Object[]))
+				%><fieldset class="embedded"><legend><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}" /></legend><%
+					for (ep in p.component.properties) {
+						renderFieldForProperty(ep, p.component, "${p.name}.")
+					}
+				%></fieldset><%
+			} else {
+				renderFieldForProperty(p, domainClass)
+			}
 		}
 	}
 
