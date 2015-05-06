@@ -2,6 +2,9 @@
 <% import grails.persistence.Event %>
 
 <%  excludedProps = Event.allEvents.toList() << 'version' << 'dateCreated' << 'lastUpdated'
+
+	hiddenFields = ['cadastradoPor']
+
 	persistentPropNames = domainClass.persistentProperties*.name
 	boolean hasHibernate = pluginManager?.hasGrailsPlugin('hibernate') || pluginManager?.hasGrailsPlugin('hibernate4')
 	if (hasHibernate) {
@@ -38,7 +41,9 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
 		cp = owningClass.constrainedProperties[p.name]
 		required = (cp ? !(cp.propertyType in [boolean, Boolean]) && !cp.nullable : false)
 	}
-	%>
+	if(hiddenFields.contains(p.name)){%>
+		<g:hiddenField name="${p.name}" value="1" />
+	<%}else{%>
 <div class="form-group \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'error')} ${required ? 'required' : ''}">
 	<label for="${prefix}${p.name}" class="col-sm-2 control-label">
 		<g:message code="${domainClass.propertyName}.${prefix}${p.name}.label" default="${p.naturalName}" />
@@ -51,4 +56,4 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
 		</g:hasErrors>
 	</div>
 </div>
-<%  } %>
+<%  } } %>

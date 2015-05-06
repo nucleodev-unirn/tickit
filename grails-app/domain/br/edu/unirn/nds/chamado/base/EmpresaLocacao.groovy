@@ -24,12 +24,12 @@ class EmpresaLocacao {
         razaoSocial nullable: true
         cpfCnpj()
         responsavelAtendimento()
-        observacao()
+        observacao nullable: true
         ativo()
 
         dateCreated attributes: [showInList: false]
         lastUpdated attributes: [showInList: false]
-        cadastradoPor attributes: [ showInForm: false, showInList: false]
+        cadastradoPor attributes: [showInList: false]
         ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]

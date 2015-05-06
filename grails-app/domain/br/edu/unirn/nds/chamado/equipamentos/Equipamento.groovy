@@ -9,9 +9,11 @@ class Equipamento {
     String tombamento
     String descricao
     String mac
-    boolean locado
+
+    Boolean locado = Boolean.FALSE
+
     EmpresaLocacao empresaLocacao
-    EquipamentoChamado equipamentoChamado
+    TipoEquipamento tipoEquipamento
 
     Boolean ativo = Boolean.TRUE
 
@@ -26,17 +28,17 @@ class Equipamento {
     static constraints = {
         nome()
         tombamento()
-        descricao()
-        mac()
+        descricao nullable: true
+        mac nullable: true
         locado()
         empresaLocacao()
-        equipamentoChamado()
+        tipoEquipamento()
 
         ativo()
 
         dateCreated attributes: [showInList: false]
         lastUpdated attributes: [showInList: false]
-        cadastradoPor attributes: [ showInForm: false, showInList: false]
+        cadastradoPor attributes: [showInList: false]
         ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]

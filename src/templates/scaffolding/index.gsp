@@ -59,7 +59,7 @@
 								<%   if (p.type == Boolean || p.type == boolean) { %>
 								<td><g:formatBoolean boolean="\${${propertyName}.${p.name}}" /></td>
 								<%          } else if (p.type == Date || p.type == java.sql.Date || p.type == java.sql.Time || p.type == Calendar) { %>
-								<td><g:formatDate date="\${${propertyName}.${p.name}}" format="dd/MM/yyyy"/></td>
+								<td><g:formatDate date="\${${propertyName}.${p.name}}" format="${p.name == 'dateCreated' || p.name == 'lastUpdated'?'dd/MM/yyyy HH:mm':'dd/MM/yyyy'}"/></td>
 								<%          } else { %>
 								<td>\${fieldValue(bean: ${propertyName}, field: "${p.name}")}</td>
 								<%  }   }   } %>
@@ -72,7 +72,7 @@
 						</tbody>
 					</table>
 					<div class="pagination">
-						<g:paginate total="\${${propertyName}Count ?: 0}" />
+						<g:paginate class="pagination-sm" total="\${${propertyName}Count ?: 0}" />
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->

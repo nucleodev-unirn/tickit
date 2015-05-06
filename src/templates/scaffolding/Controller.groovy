@@ -1,5 +1,6 @@
 <%=packageName ? "package ${packageName}\n\n" : ''%>
 
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -38,7 +39,7 @@ class ${className}Controller {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
-                redirect ${propertyName}
+                redirect(action: "edit", id: ${propertyName}?.id)
             }
             '*' { respond ${propertyName}, [status: CREATED] }
         }
@@ -65,7 +66,7 @@ class ${className}Controller {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
-                redirect ${propertyName}
+                redirect(action: "edit", id: ${propertyName}?.id)
             }
             '*'{ respond ${propertyName}, [status: OK] }
         }
