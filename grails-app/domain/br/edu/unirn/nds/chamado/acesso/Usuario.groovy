@@ -3,20 +3,21 @@ package br.edu.unirn.nds.chamado.acesso
 class Usuario {
     String login
     String senha
-    String senhaHash
-    
-    static transients = ["senha"]
+
+    Date dateCreated
+    Date lastUpdated
+
+    Boolean ativo = Boolean.TRUE
 
     static constraints = {
-        login()
-        senha(nullable: false, blank: false)
-        senhaHash()
+        login nullable: false, unique: true
+        senha nullable: false
     }
-    
-    def setSenha(String val){
-        if(val){
-            senha = val
-            senhaHash = senha?.encodeAsSHA256()
+
+    def beforeInsert() {
+        if(senha){
+            this.senha = senha.encodeAsSHA256();
         }
     }
+    
 }

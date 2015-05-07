@@ -42,8 +42,11 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
 		required = (cp ? !(cp.propertyType in [boolean, Boolean]) && !cp.nullable : false)
 	}
 	if(hiddenFields.contains(p.name)){%>
-		<g:hiddenField name="${p.name}" value="1" />
-	<%}else{%>
+		<%if(p.name.equals('cadastradoPor')){%>
+			<g:hiddenField name="${p.name}" value="\${session.usuario?.id}"  />
+		<%}else{%>
+			<g:hiddenField name="${p.name}" value="\${session.${p.name}?.id}"  />
+	<%}}else{%>
 <div class="form-group \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'error')} ${required ? 'required' : ''}">
 	<label for="${prefix}${p.name}" class="col-sm-2 control-label">
 		<g:message code="${domainClass.propertyName}.${prefix}${p.name}.label" default="${p.naturalName}" />

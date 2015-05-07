@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
+		<title>TickIT</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		%{--<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
@@ -33,27 +33,21 @@
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
 							<!-- User Account: style can be found in dropdown.less -->
-							<li class="dropdown user user-menu">
+							<li class="dropdown options">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-									<span class="hidden-xs">Usuario Logado</span>
+									<i class="glyphicon glyphicon-user"></i>
+									<span class="hidden-xs">${session.usuario?.login}</span>
+									<span class="caret"></span>
 								</a>
-								<ul class="dropdown-menu">
-									<!-- User image -->
-									<li class="user-header">
-										<img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-										<p>
-											Nome Usuario Logado
-										</p>
-									</li>
-									<!-- Menu Footer-->
-									<li class="user-footer">
-										<div class="pull-left">
-											<a href="#" class="btn btn-default btn-flat">Minha Conta</a>
-										</div>
-										<div class="pull-right">
-											<a href="#" class="btn btn-default btn-flat">Sair</a>
-										</div>
+								<ul class="dropdown-menu animated bounceIn" role="menu">
+									<li>
+										<span class="arrow top"></span>
+										<a href="#">
+											<span class="icon"><i class="fa fa-user"></i>
+											</span>Minha Conta</a>
+										<a href="${createLink(controller: 'autenticacao', action: 'logout')}">
+											<span class="icon"><i class="fa fa-sign-out"></i>
+											</span>Sair</a>
 									</li>
 								</ul>
 							</li>
@@ -71,8 +65,8 @@
 					<!-- sidebar menu: : style can be found in sidebar.less -->
 					<ul class="sidebar-menu">
 						<li class="header">MENU PRINCIPAL</li>
-						<li>
-							<a href="#">
+						<li id="indexOpt">
+							<a href="${createLink(controller: "index")}">
 								<i class="fa fa-dashboard"></i> <span>Vis&atilde;o Geral</span>
 							</a>
 						</li>

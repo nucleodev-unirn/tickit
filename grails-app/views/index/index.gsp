@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
+		<title>TickIT</title>
 	</head>
 	<body>
 		<!-- Content Header (Page header) -->
@@ -22,5 +22,10 @@
 		<section class="content">
 
 		</section>
+		<g:javascript>
+			$(document).ready(function(){
+				TICKIT.selectMenu("indexOpt");
+			});
+		</g:javascript>
 	</body>
 </html>
