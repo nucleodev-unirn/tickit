@@ -11,7 +11,9 @@ class Usuario {
 
     static constraints = {
         login nullable: false, unique: true
-        senha nullable: false
+        senha nullable: false, attributes: [showInList: false]
+        dateCreated()
+        lastUpdated()
     }
 
     def beforeInsert() {
@@ -19,5 +21,7 @@ class Usuario {
             this.senha = senha.encodeAsSHA256();
         }
     }
+
+    static searchFields = ["login"]
     
 }

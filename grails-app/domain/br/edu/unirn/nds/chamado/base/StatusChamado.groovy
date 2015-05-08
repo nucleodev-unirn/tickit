@@ -11,23 +11,26 @@ class StatusChamado {
     String descricao
     Boolean ativo = Boolean.TRUE
 
-    Usuario cadastradoPor
     Date dateCreated
-    Usuario ultimaAtualizacaoPor
     Date lastUpdated
-    Usuario desativadoPor
     Date dataDesativacao
+
+    Usuario cadastradoPor
+    Usuario ultimaAtualizacaoPor
+    Usuario desativadoPor
 
     static constraints = {
         nome()
-        descricao()
+        descricao nullable: true
         ativo()
 
-        cadastradoPor ()
         dateCreated ()
-        ultimaAtualizacaoPor ()
         lastUpdated ()
-        desativadoPor ()
-        dataDesativacao ()
+        cadastradoPor attributes: [showInList: false]
+        ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
+        desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
+        dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]
     }
+
+    static searchFields = ["nome","descricao"]
 }

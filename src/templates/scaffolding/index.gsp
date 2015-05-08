@@ -27,52 +27,66 @@
 					</div>
 				</div>
 				<div class="box-body">
-					<g:if test="\${flash.message}">
-						<div class="message" role="status">\${flash.message}</div>
-					</g:if>
-					<table class="table table-bordered table-condensed">
-						<thead>
-						<tr>
-							<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
-							allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
-							props = domainClass.properties.findAll { allowedNames.contains(it.name) && !excludedProps.contains(it.name) && it.type != null && !Collection.isAssignableFrom(it.type) && (domainClass.constrainedProperties[it.name] ? domainClass.constrainedProperties[it.name].display : true) }
-							Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
-							props.eachWithIndex { p, i ->
-								cp = domainClass.constrainedProperties[p.name]
-								isVisible = cp?.attributes?.showInList != null?cp?.attributes?.showInList:true
-								if (isVisible) {
-									if (p.isAssociation()) { %>
-							<th><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}" /></th>
-							<%      } else { %>
-							<g:sortableColumn property="${p.name}" title="\${message(code: '${domainClass.propertyName}.${p.name}.label', default: '${p.naturalName}')}" />
-							<%  }   }   } %>
-							<th></th>
-						</tr>
-						</thead>
-						<tbody>
-						<g:each in="\${${propertyName}List}" status="i" var="${propertyName}">
-							<tr class="\${(i % 2) == 0 ? 'even' : 'odd'}">
-								<%  props.eachWithIndex { p, i ->
-									cp = domainClass.constrainedProperties[p.name]
-									isVisible = cp?.attributes?.showInList != null?cp?.attributes?.showInList:true
-									if (isVisible) { %>
-								<%   if (p.type == Boolean || p.type == boolean) { %>
-								<td><g:formatBoolean boolean="\${${propertyName}.${p.name}}" /></td>
-								<%          } else if (p.type == Date || p.type == java.sql.Date || p.type == java.sql.Time || p.type == Calendar) { %>
-								<td><g:formatDate date="\${${propertyName}.${p.name}}" format="${p.name == 'dateCreated' || p.name == 'lastUpdated'?'dd/MM/yyyy HH:mm':'dd/MM/yyyy'}"/></td>
-								<%          } else { %>
-								<td>\${fieldValue(bean: ${propertyName}, field: "${p.name}")}</td>
-								<%  }   }   } %>
-								<td class="text-center">
-									<g:link class="btn btn-xs btn-default" action="edit" id="\${${propertyName}.id}"><i class="fa fa-pencil"></i></g:link>
-									<g:link class="btn btn-xs btn-danger" action="edit" id="\${${propertyName}.id}"><i class="glyphicon glyphicon-remove"></i></g:link>
-								</td>
-							</tr>
-						</g:each>
-						</tbody>
-					</table>
-					<div class="pagination">
-						<g:paginate class="pagination-sm" total="\${${propertyName}Count ?: 0}" />
+					<div class="row">
+						<div class="col-xs-12">
+							<g:form action="index">
+								<div class="input-group margin-bottom-10">
+									<g:textField name="q" class="form-control input-sm  pull-right" placeholder="Pesquisar" style="width: 150px;" value="\${query}"/>
+									<div class="input-group-btn">
+										<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+									</div>
+								</div>
+							</g:form>
+						</div>
+						<div class="col-xs-12">
+							<g:if test="\${flash.message}">
+								<div class="message" role="status">\${flash.message}</div>
+							</g:if>
+							<table class="table table-bordered table-condensed">
+								<thead>
+								<tr>
+									<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
+									allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
+									props = domainClass.properties.findAll { allowedNames.contains(it.name) && !excludedProps.contains(it.name) && it.type != null && !Collection.isAssignableFrom(it.type) && (domainClass.constrainedProperties[it.name] ? domainClass.constrainedProperties[it.name].display : true) }
+									Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
+									props.eachWithIndex { p, i ->
+										cp = domainClass.constrainedProperties[p.name]
+										isVisible = cp?.attributes?.showInList != null?cp?.attributes?.showInList:true
+										if (isVisible) {
+											if (p.isAssociation()) { %>
+									<th><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}" /></th>
+									<%      } else { %>
+									<g:sortableColumn params="[q: "\${query?:''}"]" property="${p.name}" title="\${message(code: '${domainClass.propertyName}.${p.name}.label', default: '${p.naturalName}')}" />
+									<%  }   }   } %>
+									<th></th>
+								</tr>
+								</thead>
+								<tbody>
+								<g:each in="\${${propertyName}List}" status="i" var="${propertyName}">
+									<tr class="\${(i % 2) == 0 ? 'even' : 'odd'}">
+										<%  props.eachWithIndex { p, i ->
+											cp = domainClass.constrainedProperties[p.name]
+											isVisible = cp?.attributes?.showInList != null?cp?.attributes?.showInList:true
+											if (isVisible) { %>
+										<%   if (p.type == Boolean || p.type == boolean) { %>
+										<td><g:formatBoolean boolean="\${${propertyName}.${p.name}}" /></td>
+										<%          } else if (p.type == Date || p.type == java.sql.Date || p.type == java.sql.Time || p.type == Calendar) { %>
+										<td><g:formatDate date="\${${propertyName}.${p.name}}" format="${p.name == 'dateCreated' || p.name == 'lastUpdated'?'dd/MM/yyyy HH:mm':'dd/MM/yyyy'}"/></td>
+										<%          } else { %>
+										<td>\${fieldValue(bean: ${propertyName}, field: "${p.name}")}</td>
+										<%  }   }   } %>
+										<td class="text-center">
+											<g:link class="btn btn-xs btn-default" action="edit" id="\${${propertyName}.id}" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil"></i></g:link>
+											<g:link class="btn btn-xs btn-danger" action="edit" id="\${${propertyName}.id}" data-toggle="tooltip" data-placement="bottom" title="Remover"><i class="glyphicon glyphicon-remove"></i></g:link>
+										</td>
+									</tr>
+								</g:each>
+								</tbody>
+							</table>
+							<div class="pagination">
+								<g:paginate params="[q: "\${query?:''}"]" class="pagination-sm" total="\${${propertyName}Count ?: 0}" />
+							</div>
+						</div>
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->

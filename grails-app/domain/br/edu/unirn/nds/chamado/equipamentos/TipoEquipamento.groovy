@@ -33,4 +33,6 @@ class TipoEquipamento {
     String toString() {
         return nome
     }
+
+    static searchFields = ["nome","descricao"]
 }

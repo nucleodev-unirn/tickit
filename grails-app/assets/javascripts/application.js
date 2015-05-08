@@ -18,7 +18,7 @@ var TICKIT = (function($) {
 	}
 
 	function init(){
-
+		$('[data-toggle="tooltip"]').tooltip();
 	}
 
 	function selectMenu(id){

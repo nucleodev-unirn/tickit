@@ -25,4 +25,6 @@ class Setor {
         desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]
     }
+
+    static searchFields = ["nome"]
 }

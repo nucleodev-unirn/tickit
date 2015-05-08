@@ -26,10 +26,12 @@ class StatusEquipamento {
         ativo ()
 
         dateCreated ()
-        lastUpdated attributes: [showInList: false]
+        lastUpdated ()
         cadastradoPor attributes: [showInList: false]
         ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]
     }
+
+    static searchFields = ["nome","descricao"]
 }

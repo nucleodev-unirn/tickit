@@ -72,14 +72,16 @@
 						</li>
 						<li class="treeview">
 							<a href="#">
-								<i class="fa fa-cogs"></i> <span>Configura&ccedil;&otilde;es</span> <i class="fa fa-angle-left pull-right"></i>
+								<i class="fa fa-cogs"></i> <span>Cadastros</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 							<ul class="treeview-menu">
 								<li id="empresaLocacaoOpt"><a href="${createLink(controller: 'empresaLocacao')}">Empresa Loca&ccedil;&atilde;o</a></li>
 								<li id="equipamentoOpt"><a href="${createLink(controller: 'equipamento')}">Equipamentos</a></li>
 								<li id="tipoEquipamentoOpt"><a href="${createLink(controller: 'tipoEquipamento')}">Tipos de Equipamento</a></li>
 								<li id="statusEquipamentoOpt"><a href="${createLink(controller: 'statusEquipamento')}">Status Equipamento</a></li>
+								<li id="statusChamadoOpt"><a href="${createLink(controller: 'statusChamado')}">Status Chamado</a></li>
 								<li id="setorOpt"><a href="${createLink(controller: 'setor')}">Setores</a></li>
+								<li id="usuarioOpt"><a href="${createLink(controller: 'usuario')}">Usu&aacute;rios</a></li>
 							</ul>
 						</li>
 					</ul>

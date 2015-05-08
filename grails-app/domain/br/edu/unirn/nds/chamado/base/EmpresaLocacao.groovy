@@ -39,4 +39,6 @@ class EmpresaLocacao {
     String toString() {
         return nome
     }
+
+    static searchFields = ["nome","razaoSocial","cpfCnpj","responsavelAtendimento"]
 }

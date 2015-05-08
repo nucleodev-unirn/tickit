@@ -1,8 +1,8 @@
 <%=packageName ? "package ${packageName}\n\n" : ''%>
 
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import org.codehaus.groovy.grails.commons.GrailsClassUtils
 
 @Transactional(readOnly = true)
 class ${className}Controller {
@@ -11,7 +11,23 @@ class ${className}Controller {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond ${className}.list(params), model:[${propertyName}Count: ${className}.count()]
+        def criteriaResult = ${className}.createCriteria().list(params) {
+            if (params.q) {
+                or {
+                    GrailsClassUtils?.getStaticPropertyValue(${className}, "searchFields")?.each {
+                        def property = GrailsClassUtils?.getPropertyType(${className}, it)
+                        if (property && Number.isAssignableFrom(property) || (property?.isPrimitive() && property != boolean)) {
+                            if (property == Integer)
+                                eq(it, params.int("q"))
+                        } else if (property == String) {
+                            ilike(it, params.q + "%")
+                        }
+                    }
+                }
+            }
+        }
+
+        respond criteriaResult, model:[${propertyName}Count: criteriaResult.totalCount, query: params.q]
     }
 
     def show(${className} ${propertyName}) {
