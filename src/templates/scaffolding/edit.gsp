@@ -25,6 +25,12 @@
 					</div>
 				</div>
 				<div class="box-body box-form">
+					<g:if test="\${flash.error}">
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							\${flash.error}
+						</div>
+					</g:if>
 					<g:if test="\${flash.message}">
 						<div class="alert alert-success alert-dismissible" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

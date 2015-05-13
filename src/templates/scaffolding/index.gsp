@@ -77,7 +77,9 @@
 										<%  }   }   } %>
 										<td class="text-center">
 											<g:link class="btn btn-xs btn-default" action="edit" id="\${${propertyName}.id}" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil"></i></g:link>
-											<g:link class="btn btn-xs btn-danger" action="edit" id="\${${propertyName}.id}" data-toggle="tooltip" data-placement="bottom" title="Remover"><i class="glyphicon glyphicon-remove"></i></g:link>
+											<g:form url="[resource:${propertyName}, action:'delete']" method="DELETE" style="display: inline-block;">
+												<button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remover" onclick="return confirm('\${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"><i class="glyphicon glyphicon-remove"></i></button>
+											</g:form>
 										</td>
 									</tr>
 								</g:each>

@@ -1,5 +1,8 @@
 <%=packageName ? "package ${packageName}\n\n" : ''%>
 
+
+import org.springframework.dao.DataIntegrityViolationException
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.commons.GrailsClassUtils
@@ -96,7 +99,17 @@ class ${className}Controller {
             return
         }
 
-        ${propertyName}.delete flush:true
+        try{
+            ${propertyName}.delete flush:true
+        }catch (org.springframework.dao.DataIntegrityViolationException e){
+            ${className}.withSession { session ->
+                session.clear()
+            }
+            flash.error = message(code: 'default.not.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
+            redirect(action: "edit", id: params.id)
+            return
+        }
+
 
         request.withFormat {
             form multipartForm {
