@@ -23,7 +23,7 @@ var TICKIT = (function($) {
 
 	function selectMenu(id){
 		var $opt = $("#"+id);
-		$(".sidebar-menu li.active").removeClass("active").find("ul").removeClass("menu-open").css('display','none')
+		$(".sidebar-menu li.active").removeClass("active").find("ul").removeClass("menu-open").css('display','none');
 
 		$opt.parent().addClass('menu-open');
 		$opt.parent().parent().addClass('active');

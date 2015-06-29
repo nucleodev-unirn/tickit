@@ -37,4 +37,11 @@ class Chamado {
         desativadoPor ()
         dataDesativacao ()
     }
+
+    static searchFields = ["titulo", "nomeSolicitante", "emailSolicitante", "descricao" , "avaliacao" , "tags"]
+
+    @Override
+    String toString() {
+        "${titulo} - ${nomeSolicitante}"
+    }
 }
