@@ -23,5 +23,10 @@ class Usuario {
     }
 
     static searchFields = ["login"]
-    
+
+    @Override
+    String toString() {
+//        return super.toString()
+        login
+    }
 }

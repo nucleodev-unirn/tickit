@@ -27,4 +27,9 @@ class Setor {
     }
 
     static searchFields = ["nome"]
+
+    @Override
+    String toString() {
+        nome
+    }
 }
