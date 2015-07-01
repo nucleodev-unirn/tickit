@@ -12,7 +12,7 @@ class EquipamentoController {
 
     static scaffold = true
 
-//    static allowedMethods = [salvar: "POST", update: "PUT", excluir: "DELETE"]
+//    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 /*
     def index(Integer max) {
@@ -44,30 +44,30 @@ class EquipamentoController {
 */
 
 /*
-    def cadastrar() {
+    def create() {
         respond new Equipamento(params)
     }
 */
 
 /*
     @Transactional
-    def salvar(Equipamento equipamentoInstance) {
+    def save(Equipamento equipamentoInstance) {
         if (equipamentoInstance == null) {
             notFound()
             return
         }
 
         if (equipamentoInstance.hasErrors()) {
-            respond equipamentoInstance.errors, view: 'cadastrar'
+            respond equipamentoInstance.errors, view: 'create'
             return
         }
 
-        equipamentoInstance.salvar flush: true
+        equipamentoInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-                redirect(action: "editar", id: equipamentoInstance?.id)
+                redirect(action: "edit", id: equipamentoInstance?.id)
             }
             '*' { respond equipamentoInstance, [status: CREATED] }
         }
@@ -75,7 +75,7 @@ class EquipamentoController {
 */
 
 /*
-    def editar(Equipamento equipamentoInstance) {
+    def edit(Equipamento equipamentoInstance) {
         respond equipamentoInstance
     }
 */
@@ -89,16 +89,16 @@ class EquipamentoController {
         }
 
         if (equipamentoInstance.hasErrors()) {
-            respond equipamentoInstance.errors, view: 'editar'
+            respond equipamentoInstance.errors, view: 'edit'
             return
         }
 
-        equipamentoInstance.salvar flush: true
+        equipamentoInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-                redirect(action: "editar", id: equipamentoInstance?.id)
+                redirect(action: "edit", id: equipamentoInstance?.id)
             }
             '*' { respond equipamentoInstance, [status: OK] }
         }
@@ -107,7 +107,7 @@ class EquipamentoController {
 
 /*
     @Transactional
-    def excluir(Equipamento equipamentoInstance) {
+    def delete(Equipamento equipamentoInstance) {
 
         if (equipamentoInstance == null) {
             notFound()
@@ -115,13 +115,13 @@ class EquipamentoController {
         }
 
         try {
-            equipamentoInstance.excluir flush: true
+            equipamentoInstance.delete flush: true
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
             Equipamento.withSession { session ->
                 session.clear()
             }
             flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'Equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-            redirect(action: "editar", id: params.id)
+            redirect(action: "edit", id: params.id)
             return
         }
 
