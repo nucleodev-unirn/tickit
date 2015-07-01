@@ -12,7 +12,7 @@ class EquipamentoController {
 
     static scaffold = true
 
-//    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+//    static allowedMethods = [save: "POST", update: "PUT", Excluir: "DELETE"]
 
 /*
     def index(Integer max) {
@@ -67,7 +67,7 @@ class EquipamentoController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-                redirect(action: "edit", id: equipamentoInstance?.id)
+                redirect(action: "editar", id: equipamentoInstance?.id)
             }
             '*' { respond equipamentoInstance, [status: CREATED] }
         }
@@ -75,7 +75,7 @@ class EquipamentoController {
 */
 
 /*
-    def edit(Equipamento equipamentoInstance) {
+    def editar(Equipamento equipamentoInstance) {
         respond equipamentoInstance
     }
 */
@@ -89,7 +89,7 @@ class EquipamentoController {
         }
 
         if (equipamentoInstance.hasErrors()) {
-            respond equipamentoInstance.errors, view: 'edit'
+            respond equipamentoInstance.errors, view: 'editar'
             return
         }
 
@@ -98,7 +98,7 @@ class EquipamentoController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-                redirect(action: "edit", id: equipamentoInstance?.id)
+                redirect(action: "editar", id: equipamentoInstance?.id)
             }
             '*' { respond equipamentoInstance, [status: OK] }
         }
@@ -107,7 +107,7 @@ class EquipamentoController {
 
 /*
     @Transactional
-    def delete(Equipamento equipamentoInstance) {
+    def Excluir(Equipamento equipamentoInstance) {
 
         if (equipamentoInstance == null) {
             notFound()
@@ -115,13 +115,13 @@ class EquipamentoController {
         }
 
         try {
-            equipamentoInstance.delete flush: true
+            equipamentoInstance.Excluir flush: true
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
             Equipamento.withSession { session ->
                 session.clear()
             }
             flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'Equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-            redirect(action: "edit", id: params.id)
+            redirect(action: "editar", id: params.id)
             return
         }
 
