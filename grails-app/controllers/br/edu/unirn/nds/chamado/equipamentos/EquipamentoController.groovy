@@ -10,11 +10,8 @@ import org.codehaus.groovy.grails.commons.GrailsClassUtils
 @Transactional(readOnly = true)
 class EquipamentoController {
 
-    static scaffold = true
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-//    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
-/*
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         def criteriaResult = Equipamento.createCriteria().list(params) {
@@ -35,21 +32,15 @@ class EquipamentoController {
 
         respond criteriaResult, model: [equipamentoInstanceCount: criteriaResult.totalCount, query: params.q]
     }
-*/
 
-/*
     def show(Equipamento equipamentoInstance) {
         respond equipamentoInstance
     }
-*/
 
-/*
     def create() {
         respond new Equipamento(params)
     }
-*/
 
-/*
     @Transactional
     def save(Equipamento equipamentoInstance) {
         if (equipamentoInstance == null) {
@@ -72,15 +63,11 @@ class EquipamentoController {
             '*' { respond equipamentoInstance, [status: CREATED] }
         }
     }
-*/
 
-/*
     def edit(Equipamento equipamentoInstance) {
         respond equipamentoInstance
     }
-*/
 
-/*
     @Transactional
     def update(Equipamento equipamentoInstance) {
         if (equipamentoInstance == null) {
@@ -103,9 +90,7 @@ class EquipamentoController {
             '*' { respond equipamentoInstance, [status: OK] }
         }
     }
-*/
 
-/*
     @Transactional
     def delete(Equipamento equipamentoInstance) {
 
@@ -134,9 +119,7 @@ class EquipamentoController {
             '*' { render status: NO_CONTENT }
         }
     }
-*/
 
-/*
     protected void notFound() {
         request.withFormat {
             form multipartForm {
@@ -146,5 +129,4 @@ class EquipamentoController {
             '*' { render status: NOT_FOUND }
         }
     }
-*/
 }
