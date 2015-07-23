@@ -31,7 +31,7 @@ class Equipamento {
         descricao nullable: true
         mac nullable: true
         locado()
-        empresaLocacao()
+        empresaLocacao(nullable: true)
         tipoEquipamento()
 
         ativo()

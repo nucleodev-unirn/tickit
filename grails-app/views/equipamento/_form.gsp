@@ -75,10 +75,9 @@
 <div class="form-group ${hasErrors(bean: equipamentoInstance, field: 'empresaLocacao', 'error')} required">
 	<label for="empresaLocacao" class="col-sm-2 control-label">
 		<g:message code="equipamento.empresaLocacao.label" default="Empresa Locacao" />
-		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-5">
-		<g:select id="empresaLocacao" name="empresaLocacao.id" from="${br.edu.unirn.nds.chamado.base.EmpresaLocacao.list()}" optionKey="id" required="" value="${equipamentoInstance?.empresaLocacao?.id}" class="many-to-one form-control input-sm"/>
+		<g:select id="empresaLocacao" name="empresaLocacao.id" from="${br.edu.unirn.nds.chamado.base.EmpresaLocacao.list()}" optionKey="id"  value="${equipamentoInstance?.empresaLocacao?.id}" class="many-to-one form-control input-sm"/>
 
 		<g:hasErrors bean="${equipamentoInstance}" field="empresaLocacao">
 			<span class="help-block error"><g:renderErrors bean="${equipamentoInstance}" field="empresaLocacao" as="list" /></span>

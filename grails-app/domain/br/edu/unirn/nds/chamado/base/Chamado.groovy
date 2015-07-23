@@ -4,6 +4,7 @@ import br.edu.unirn.nds.chamado.acesso.Usuario
 
 class Chamado {
 
+    CategoriaChamado categoriaChamado
     Setor setorSolicitante
     String titulo
     String nomeSolicitante
@@ -21,6 +22,7 @@ class Chamado {
     Date dataDesativacao
 
     static constraints = {
+        categoriaChamado()
         setorSolicitante()
         titulo()
         nomeSolicitante()
@@ -38,7 +40,7 @@ class Chamado {
         dataDesativacao ()
     }
 
-    static searchFields = ["titulo", "nomeSolicitante", "emailSolicitante", "descricao" , "avaliacao" , "tags"]
+    static searchFields = ["titulo", "nomeSolicitante", "emailSolicitante", "descricao" , "avaliacao" , "tags" ]
 
     @Override
     String toString() {

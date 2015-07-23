@@ -73,6 +73,19 @@
 
                 <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-tasks"></i> <span>Administração</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="statusChamadoOpt"><a href="${createLink(controller: 'statusChamado')}">Status Chamado</a></li>
+                        <li id="setorOpt"><a href="${createLink(controller: 'setor')}">Setores</a></li>
+                        <li id="usuarioOpt"><a href="${createLink(controller: 'usuario')}">Usu&aacute;rios</a></li>
+                        <li id="statusEquipamentoOpt"><a href="${createLink(controller: 'statusEquipamento')}">Status Equipamento</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
                         <i class="fa fa-tasks"></i> <span>Chamados</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
@@ -83,20 +96,26 @@
 
                 <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-tasks"></i> <span>Equipamentos</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="equipamentoOpt"><a href="${createLink(controller: 'equipamento')}">Equipamentos</a></li>
+                        <li id="tipoEquipamentoOpt"><a href="${createLink(controller: 'tipoEquipamento')}">Tipos de Equipamento</a></li>
+                        <li id="equipamentoSetorOpt"><a href="${createLink(controller: 'equipamentoSetor')}">Equipamento Setor</a></li>
+                        <li id="empresaLocacaoOpt"><a href="${createLink(controller: 'empresaLocacao')}">Empresa Loca&ccedil;&atilde;o</a></li>
+
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
                         <i class="fa fa-cogs"></i> <span>Cadastros</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li id="empresaLocacaoOpt"><a href="${createLink(controller: 'empresaLocacao')}">Empresa Loca&ccedil;&atilde;o</a></li>
-                        <li id="equipamentoOpt"><a href="${createLink(controller: 'equipamento')}">Equipamentos</a></li>
-                        <li id="tipoEquipamentoOpt"><a href="${createLink(controller: 'tipoEquipamento')}">Tipos de Equipamento</a></li>
-                        <li id="statusEquipamentoOpt"><a href="${createLink(controller: 'statusEquipamento')}">Status Equipamento</a></li>
-                        <li id="statusChamadoOpt"><a href="${createLink(controller: 'statusChamado')}">Status Chamado</a></li>
-                        <li id="setorOpt"><a href="${createLink(controller: 'setor')}">Setores</a></li>
-                        <li id="usuarioOpt"><a href="${createLink(controller: 'usuario')}">Usu&aacute;rios</a></li>
                         <li id="alteracaoStatusChamadoOpt"><a href="${createLink(controller: 'alteracaoStatusChamado')}">Alteração de Status Chamado</a></li>
                         <li id="equipamentoChamadoOpt"><a href="${createLink(controller: 'equipamentoChamado')}">Equipamento Chamado</a></li>
                         <li id="responsavelChamadoOpt"><a href="${createLink(controller: 'responsavelChamado')}">Responsável Chamado</a></li>
-                        <li id="equipamentoSetorOpt"><a href="${createLink(controller: 'equipamentoSetor')}">Equipamento Setor</a></li>
                         <li id="categoriaChamadoOpt"><a href="${createLink(controller: 'categoriaChamado')}">Categoria Chamado</a></li>
                         <li id="comentarioChamadoOpt"><a href="${createLink(controller: 'comentarioChamado')}">Comentário Chamado</a></li>
                         <li id="anexoChamadoOpt"><a href="${createLink(controller: 'anexoChamado')}">Anexo Chamado</a></li>
