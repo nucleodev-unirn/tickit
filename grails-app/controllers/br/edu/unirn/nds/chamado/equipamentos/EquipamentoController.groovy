@@ -1,132 +1,69 @@
 package br.edu.unirn.nds.chamado.equipamentos
-
-
-import org.springframework.dao.DataIntegrityViolationException
-
-import static org.springframework.http.HttpStatus.*
+import br.edu.unirn.nds.chamado.base.EmpresaLocacao
+import grails.converters.JSON
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.commons.GrailsClassUtils
 
 @Transactional(readOnly = true)
 class EquipamentoController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static scaffold = true
 
     def index(Integer max) {
+        if(params.q instanceof String){
+            params.q = JSON.parse(params.q)
+        }
+        def hasQuery = false
         params.max = Math.min(max ?: 10, 100)
         def criteriaResult = Equipamento.createCriteria().list(params) {
-            if (params.q) {
+            if (params.q?.pesquisaSimples) {
                 or {
                     GrailsClassUtils?.getStaticPropertyValue(Equipamento, "searchFields")?.each {
                         def property = GrailsClassUtils?.getPropertyType(Equipamento, it)
                         if (property && Number.isAssignableFrom(property) || (property?.isPrimitive() && property != boolean)) {
                             if (property == Integer)
-                                eq(it, params.int("q"))
+                                eq(it, params.q.pesquisaSimplesparams.toInterge())
                         } else if (property == String) {
-                            ilike(it, params.q + "%")
+                            ilike(it, params.q.pesquisaSimples + "%")
                         }
                     }
                 }
+            }else{
+                and{
+                    if(params.q?.nomeEquipamento){
+                        hasQuery = true
+                        ilike("nome", params.q.nomeEquipamento + "%")
+                    }
+                    if(params.q?.tombamento){
+                        hasQuery = true
+                        ilike("tombamento", params.q.tombamento + "%")
+                    }
+                    if(params.q?.mac){
+                        hasQuery = true
+                        ilike("mac", params.q.mac + "%")
+                    }
+                    if(params.q?.statusEquipamento){
+                        hasQuery = true
+                        eq("statusEquipamento", StatusEquipamento.get(params.q.statusEquipamento.toLong()))
+                    }
+                    if(params.q?.tipoEquipamento){
+                        hasQuery = true
+                        eq("tipoEquipamento", TipoEquipamento.get(params.q.tipoEquipamento.toLong()))
+                    }
+                    if(params.q?.empresaLocacao){
+                        hasQuery = true
+                        eq("empresaLocacao", EmpresaLocacao.get(params.q.empresaLocacao.toLong()))
+                    }
+                    if(params.q?.locado){
+                        hasQuery = true
+                        eq("locado", params.q.locado.toBoolean())
+                    }
+                }
+
+
             }
         }
 
-        respond criteriaResult, model: [equipamentoInstanceCount: criteriaResult.totalCount, query: params.q]
-    }
-
-    def show(Equipamento equipamentoInstance) {
-        respond equipamentoInstance
-    }
-
-    def create() {
-        respond new Equipamento(params)
-    }
-
-    @Transactional
-    def save(Equipamento equipamentoInstance) {
-        if (equipamentoInstance == null) {
-            notFound()
-            return
-        }
-
-        if (equipamentoInstance.hasErrors()) {
-            respond equipamentoInstance.errors, view: 'create'
-            return
-        }
-
-        equipamentoInstance.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-                redirect(action: "edit", id: equipamentoInstance?.id)
-            }
-            '*' { respond equipamentoInstance, [status: CREATED] }
-        }
-    }
-
-    def edit(Equipamento equipamentoInstance) {
-        respond equipamentoInstance
-    }
-
-    @Transactional
-    def update(Equipamento equipamentoInstance) {
-        if (equipamentoInstance == null) {
-            notFound()
-            return
-        }
-
-        if (equipamentoInstance.hasErrors()) {
-            respond equipamentoInstance.errors, view: 'edit'
-            return
-        }
-
-        equipamentoInstance.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-                redirect(action: "edit", id: equipamentoInstance?.id)
-            }
-            '*' { respond equipamentoInstance, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def delete(Equipamento equipamentoInstance) {
-
-        if (equipamentoInstance == null) {
-            notFound()
-            return
-        }
-
-        try {
-            equipamentoInstance.delete flush: true
-        } catch (org.springframework.dao.DataIntegrityViolationException e) {
-            Equipamento.withSession { session ->
-                session.clear()
-            }
-            flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'Equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-            redirect(action: "edit", id: params.id)
-            return
-        }
-
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Equipamento.label', default: 'Equipamento'), equipamentoInstance.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NO_CONTENT }
-        }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'equipamento.label', default: 'Equipamento'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NOT_FOUND }
-        }
+        respond criteriaResult, model: [equipamentoInstanceCount: criteriaResult.totalCount, q: params.q, hasQuery: hasQuery]
     }
 }

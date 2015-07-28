@@ -18,6 +18,21 @@
     margin-bottom: 10px;
 }
 
+.padding-top-20{
+    padding-top: 20px;
+}
+
+.collapse-btn.collapsed:before{
+    font-family:'FontAwesome';
+    content:"\f077";
+    margin-right: 5px;
+}
+.collapse-btn:before{
+    font-family:'FontAwesome';
+    content:"\f078";
+    margin-right: 5px;
+}
+
 /* ----------------------------------------------------------
  *  Error Validate
  *---------------------------------------------------------- */
