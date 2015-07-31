@@ -11,10 +11,6 @@ class EquipamentoSetor {
     Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
     Date dateCreated
-    Usuario ultimaAtualizacaoPor
-    Date lastUpdated
-    Usuario desativadoPor
-    Date dataDesativacao
 
     static constraints = {
         setor()
@@ -23,9 +19,5 @@ class EquipamentoSetor {
         ativo()
         cadastradoPor ()
         dateCreated ()
-        ultimaAtualizacaoPor ()
-        lastUpdated ()
-        desativadoPor ()
-        dataDesativacao ()
     }
 }

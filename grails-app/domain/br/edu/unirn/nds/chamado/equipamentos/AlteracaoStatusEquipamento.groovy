@@ -8,13 +8,10 @@ class AlteracaoStatusEquipamento {
     StatusEquipamento statusEquipamento
     Equipamento equipamento
 
+    Date dateCreated
+
     Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
-    Date dateCreated
-    Usuario ultimaAtualizacaoPor
-    Date lastUpdated
-    Usuario desativadoPor
-    Date dataDesativacao
 
     static constraints = {
         observacao()
@@ -24,9 +21,5 @@ class AlteracaoStatusEquipamento {
         ativo()
         cadastradoPor ()
         dateCreated ()
-        ultimaAtualizacaoPor ()
-        lastUpdated ()
-        desativadoPor ()
-        dataDesativacao ()
     }
 }
