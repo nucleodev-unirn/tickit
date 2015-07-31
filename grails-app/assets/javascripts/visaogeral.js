@@ -14,14 +14,19 @@
 
     function pesquisarEquipamentos(event){
         event.preventDefault();
-        var formData = $(this).serialize();
-        loadingEquipamento("show");
-        $.ajax({
-            url: window.baseUrl+"equipamento/buscar",
-            method: "POST",
-            data: formData,
-            success: gerarTabelaEquipamento
-        });
+        if(checkForm(this)){
+            var formData = $(this).serialize();
+            loadingEquipamento("show");
+            $.ajax({
+                url: window.baseUrl+"equipamento/buscar",
+                method: "POST",
+                data: formData,
+                success: gerarTabelaEquipamento
+            });
+        }else{
+            alertMsg("#alert-pesquisar", "alert-info", "Preencha um campo para pesquisar");
+            console.info("Preecha um campo")
+        }
     }
 
     function gerarTabelaEquipamento(data){
@@ -118,6 +123,14 @@
     function resetStatusForm(){
         $("#observacao").val("");
         $("#statusEquipamento option:first").attr('selected','selected');
+    }
+
+    function checkForm(form){
+        var valid = 0;
+        $(form).find('input, select').each(function(){
+            if(($(this).val() != "" && $(this).attr("type") != "checkbox") || $(this).is(":checked")) valid+=1;
+        });
+        return valid
     }
 
 })();

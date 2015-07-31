@@ -31,6 +31,7 @@
 									</div>
 								</div><!-- /.box-header -->
 								<div class="box-body">
+									<span id="alert-pesquisar"></span>
 									<g:render template="/equipamento/pesquisaAvancada" model="['well':false,'action':'buscar']"/>
 								</div><!-- /.box-body -->
 							</div>
