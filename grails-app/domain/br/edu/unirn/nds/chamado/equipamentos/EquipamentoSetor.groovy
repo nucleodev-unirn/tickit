@@ -8,7 +8,6 @@ class EquipamentoSetor {
     Setor setor
     Equipamento equipamento
 
-    Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
     Date dateCreated
 
@@ -16,8 +15,26 @@ class EquipamentoSetor {
         setor()
         equipamento()
 
-        ativo()
         cadastradoPor ()
         dateCreated ()
+    }
+
+    static marshalling = {
+        shouldOutputVersion false
+        shouldOutputClass false
+        serializer {
+            dateCreated { value, json ->
+                json.value(value.dateCreated?.format("dd/MM/yyyy HH:mm"))
+            }
+            cadastradoPor { value, json ->
+                json.value(value.cadastradoPor?.login)
+
+            }
+        }
+        virtual{
+            nomeSetor{ value, json ->
+                json.value(value.setor?.nome)
+            }
+        }
     }
 }

@@ -10,7 +10,6 @@ class AlteracaoStatusEquipamento {
 
     Date dateCreated
 
-    Boolean ativo = Boolean.TRUE
     Usuario cadastradoPor
 
     static constraints = {
@@ -18,8 +17,26 @@ class AlteracaoStatusEquipamento {
         statusEquipamento()
         equipamento()
 
-        ativo()
         cadastradoPor ()
         dateCreated ()
+    }
+
+    static marshalling = {
+        shouldOutputVersion false
+        shouldOutputClass false
+        serializer {
+            dateCreated { value, json ->
+                json.value(value.dateCreated?.format("dd/MM/yyyy HH:mm"))
+            }
+            cadastradoPor { value, json ->
+                json.value(value.cadastradoPor?.login)
+
+            }
+        }
+        virtual{
+            status{ value, json ->
+                json.value(value.statusEquipamento?.nome)
+            }
+        }
     }
 }

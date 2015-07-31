@@ -8,7 +8,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<ul class="nav nav-tabs visao-geral">
-				<li><a href="#chamadosTab" data-toggle="tab"><i class="fa fa-bell-o"></i> Chamados</a></li>
+				<li><a href="#chamadosTab" data-toggle="tab"><i class="fa fa-bullhorn"></i> Chamados</a></li>
 				<li class="active"><a href="#tabEquipamentosTab" data-toggle="tab"><i class="fa fa-desktop"></i> Equipamentos</a></li>
 			</ul>
 		</section>

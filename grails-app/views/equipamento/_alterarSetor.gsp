@@ -22,12 +22,6 @@
                                       optionValue="nome" optionKey="id"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="observacao" class="col-sm-3 control-label">Observa&ccedil;&atilde;o *</label>
-                        <div class="col-sm-7">
-                            <g:textArea name="observacao" class="form-control input-sm" rows="4"/>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>

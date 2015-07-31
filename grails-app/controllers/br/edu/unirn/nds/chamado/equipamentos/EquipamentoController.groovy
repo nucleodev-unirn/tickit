@@ -129,7 +129,11 @@ class EquipamentoController {
     }
 
     def informacoes(Equipamento equipamento){
-        render equipamento as JSON
+        def historicoSetor = EquipamentoSetor.findAllByEquipamento(equipamento,[sort:"dateCreated", order:"desc"])
+        def historicoStatus = AlteracaoStatusEquipamento.findAllByEquipamento(equipamento,[sort:"dateCreated", order:"desc"])
+        def quantidadeChamados = EquipamentoChamado.countByEquipamento(equipamento)
+
+        render ([equipamento: equipamento,historicoSetor:historicoSetor,historicoStatus:historicoStatus,quantidadeChamados:quantidadeChamados] as JSON)
     }
 
     def alterarStatus(){
@@ -150,7 +154,6 @@ class EquipamentoController {
             render status: 500, text: "Ocorreu um erro."
             return
         }
-
         render status: 200, text: "Salvo com sucesso!"
     }
 }

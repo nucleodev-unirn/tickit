@@ -104,7 +104,6 @@
                     <ul class="treeview-menu">
                         <li id="equipamentoOpt"><a href="${createLink(controller: 'equipamento')}">Equipamentos</a></li>
                         <li id="tipoEquipamentoOpt"><a href="${createLink(controller: 'tipoEquipamento')}">Tipos de Equipamento</a></li>
-                        <li id="equipamentoSetorOpt"><a href="${createLink(controller: 'equipamentoSetor')}">Equipamento Setor</a></li>
                         <li id="empresaLocacaoOpt"><a href="${createLink(controller: 'empresaLocacao')}">Empresa Loca&ccedil;&atilde;o</a></li>
 
 
