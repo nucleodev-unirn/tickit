@@ -44,5 +44,20 @@ class Equipamento {
         dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]
     }
 
+    static marshalling = {
+        shouldOutputVersion false
+        shouldOutputClass false
+        serializer {
+            empresaLocacao { value, json ->
+                json.value(value.empresaLocacao?.nome)
+            }
+            tipoEquipamento { value, json ->
+                json.value(value.tipoEquipamento?.nome)
+
+            }
+        }
+    }
+
+
     static searchFields = ["nome","tombamento","descricao","mac"]
 }

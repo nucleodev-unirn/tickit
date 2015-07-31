@@ -17,7 +17,7 @@
         var formData = $(this).serialize();
         loadingEquipamento("show");
         $.ajax({
-            url: window.baseUrl+"equipamento.json",
+            url: window.baseUrl+"equipamento/buscar",
             method: "POST",
             data: formData,
             success: gerarTabelaEquipamento
@@ -29,7 +29,7 @@
         $.each(data, function(i, v){
             html += "<tr id='equipamento-"+ v.id+"'>" +
                 "<td>"+v.nome+"</td>" +
-                "<td>"+ v.tombemento+"</td>" +
+                "<td>"+ v.tombamento+"</td>" +
                 "<td>"+ v.mac+"</td>" +
                 "<td class='statusEquipamento'>"+ v.statusEquipamento+"</td>" +
                 "<td class='setorAtual'>"+ v.setorAtual+"</td>" +

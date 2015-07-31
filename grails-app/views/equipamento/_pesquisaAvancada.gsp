@@ -1,4 +1,4 @@
-<g:form name="pesquisaEquipamentoForm" action="index" class="${!well?'':'well well-sm'}">
+<g:form name="pesquisaEquipamentoForm" action="${action?:'index'}" class="${!well?'':'well well-sm'}">
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">

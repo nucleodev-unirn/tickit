@@ -1,10 +1,8 @@
 package br.edu.unirn.nds.chamado.equipamentos
-
 import br.edu.unirn.nds.chamado.acesso.Usuario
 import br.edu.unirn.nds.chamado.base.EmpresaLocacao
 import grails.converters.JSON
 import grails.transaction.Transactional
-import grails.validation.ValidationErrors
 import org.codehaus.groovy.grails.commons.GrailsClassUtils
 
 @Transactional(readOnly = true)
@@ -70,6 +68,48 @@ class EquipamentoController {
         respond criteriaResult, model: [equipamentoInstanceCount: criteriaResult.totalCount, q: params.q, hasQuery: hasQuery]
     }
 
+    def buscar(){
+        def criteriaResult = Equipamento.createCriteria().list(params) {
+            and{
+                if(params.q?.nomeEquipamento){
+                    ilike("nome", params.q.nomeEquipamento + "%")
+                }
+                if(params.q?.tombamento){
+                    ilike("tombamento", params.q.tombamento + "%")
+                }
+                if(params.q?.mac){
+                    ilike("mac", params.q.mac + "%")
+                }
+                if(params.q?.statusEquipamento){
+                    eq("statusEquipamento", StatusEquipamento.get(params.q.statusEquipamento.toLong()))
+                }
+                if(params.q?.tipoEquipamento){
+                    eq("tipoEquipamento", TipoEquipamento.get(params.q.tipoEquipamento.toLong()))
+                }
+                if(params.q?.empresaLocacao){
+                    eq("empresaLocacao", EmpresaLocacao.get(params.q.empresaLocacao.toLong()))
+                }
+                if(params.q?.locado){
+                    eq("locado", params.q.locado.toBoolean())
+                }
+            }
+        }
+
+        def retorno = []
+        criteriaResult.each {
+            retorno.add([
+                id: it.id,
+                nome: it.nome,
+                tombamento: it.tombamento,
+                mac: it.mac?:"",
+                statusEquipamento: AlteracaoStatusEquipamento.findByEquipamento(it,[max: 1, sort:"dateCreated", order:"desc"])?.statusEquipamento?.nome?:"",
+                setorAtual: EquipamentoSetor.findByEquipamento(it,[max: 1, sort:"dateCreated", order:"desc"])?.setor?.nome?:"",
+            ])
+        }
+
+        render retorno as JSON
+    }
+
     def ultimoStatus(Equipamento equipamento){
         def ultimaAlteracao = AlteracaoStatusEquipamento.findAllByEquipamento(equipamento,[max: 1, sort:"dateCreated", order:"desc"])
         def result = [
@@ -107,7 +147,6 @@ class EquipamentoController {
         EquipamentoSetor equipamentoSetor = new EquipamentoSetor(params)
         equipamentoSetor.cadastradoPor = Usuario.get(session.usuario?.id)
         if(!equipamentoSetor.save(flush: true)){
-            equipamentoSetor.errors.each {println it}
             render status: 500, text: "Ocorreu um erro."
             return
         }
