@@ -18,8 +18,14 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'cadastrar', 'cadastrar-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            driverClassName = "org.postgresql.Driver"
+            dialect='org.hibernate.dialect.PostgreSQLDialect'
+            dbCreate = "update" // one of 'cadastrar', 'cadastrar-drop', 'update', 'validate', ''
+//            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:postgresql://localhost:5432/tickit"
+            username='unirn'
+            password='unirn'
+            loggingSql = true
         }
     }
     test {
