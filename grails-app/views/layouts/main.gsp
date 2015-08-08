@@ -76,7 +76,7 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-tasks"></i> <span>Administração</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-lock"></i> <span>Administração</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li id="statusChamadoOpt"><a href="${createLink(controller: 'statusChamado')}">Status Chamado</a></li>
@@ -89,7 +89,7 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-tasks"></i> <span>Chamados</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-bullhorn"></i> <span>Chamados</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li id="createChamadoOpt"><a href="${createLink(controller: 'chamado', action: 'create')}"> Abrir Chamado </a></li>
@@ -99,7 +99,7 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-tasks"></i> <span>Equipamentos</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-desktop"></i> <span>Equipamentos</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li id="equipamentoOpt"><a href="${createLink(controller: 'equipamento')}">Equipamentos</a></li>
