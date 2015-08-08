@@ -1,8 +1,12 @@
 package br.edu.unirn.nds.chamado.acesso
 
+import br.edu.unirn.nds.tipos.TipoUsuario
+
 class Usuario {
     String login
     String senha
+    String matricula
+    TipoUsuario tipoUsuario = TipoUsuario.SEM_TIPO
 
     Date dateCreated
     Date lastUpdated
@@ -10,8 +14,10 @@ class Usuario {
     Boolean ativo = Boolean.TRUE
 
     static constraints = {
-        login nullable: false, unique: true
-        senha nullable: false, attributes: [showInList: false]
+        matricula()
+        login nullable: true, unique: true
+        senha nullable: true, attributes: [showInList: false]
+        tipoUsuario()
         dateCreated()
         lastUpdated()
     }
@@ -22,11 +28,12 @@ class Usuario {
         }
     }
 
-    static searchFields = ["login"]
+    static searchFields = ["login", "matricula"]
 
     @Override
     String toString() {
 //        return super.toString()
-        login
+        "${matricula}"
     }
 }
+
