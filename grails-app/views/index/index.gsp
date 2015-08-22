@@ -12,7 +12,7 @@
 				<li class="active"><a href="#tabEquipamentosTab" data-toggle="tab"><i class="fa fa-desktop"></i> Equipamentos</a></li>
 			</ul>
 		</section>
-
+	<!-- Falta adicionar a parte dos chamados-->
 		<!-- Main content -->
 		<section class="content no-padding-top-bot">
 			<div class="tab-content visao-geral-content-tab">
