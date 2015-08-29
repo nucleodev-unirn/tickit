@@ -39,7 +39,7 @@
                     <li class="dropdown options">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="glyphicon glyphicon-user"></i>
-                            <span class="hidden-xs">${session.usuario?.login}</span>
+                            <span class="hidden-xs">${session.usuario?.matricula}</span>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu animated bounceIn" role="menu">

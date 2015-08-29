@@ -1,13 +1,27 @@
 package br.edu.unirn.nds.chamado.acesso
 
+import br.edu.unirn.nds.tipos.TipoUsuario
+
 class AutenticacaoController {
 
     def index() {}
 
     def login(){
-        def usuario = Usuario.findByLoginAndSenha(params.login, params.senha?.encodeAsSHA256())
+        def usuario = Usuario.findByMatriculaAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.ADMINISTRADOR)?: Usuario.findByMatriculaAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.FUNCIONARIO)
         if(!usuario){
             flash.error = "Login ou Senha incorreto!"
+            redirect action: "index"
+            return
+        }else{
+            session.usuario = usuario
+            redirect controller: "index", action: "index"
+        }
+    }
+
+    def loginPublico(){
+        def usuario = Usuario.findByMatriculaAndTipoUsuario(params.matriculaPublica, TipoUsuario.COMUM)
+        if(!usuario){
+            flash.resposta = "Login ou Senha incorreto!"
             redirect action: "index"
             return
         }else{

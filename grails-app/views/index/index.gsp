@@ -5,6 +5,8 @@
 		<title>TickIT</title>
 	</head>
 	<body>
+
+	<g:if test="${session?.usuario?.tipoUsuario == br.edu.unirn.nds.tipos.TipoUsuario.ADMINISTRADOR || session?.usuario?.tipoUsuario == br.edu.unirn.nds.tipos.TipoUsuario.FUNCIONARIO}">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<ul class="nav nav-tabs visao-geral">
@@ -12,8 +14,8 @@
 				<li class="active"><a href="#tabEquipamentosTab" data-toggle="tab"><i class="fa fa-desktop"></i> Equipamentos</a></li>
 			</ul>
 		</section>
-	<!-- Falta adicionar a parte dos chamados-->
-		<!-- Main content -->
+		<!-- Falta adicionar a parte dos chamados-->
+            <!-- Main content -->
 		<section class="content no-padding-top-bot">
 			<div class="tab-content visao-geral-content-tab">
 				<div class="tab-pane" id="chamadosTab">
@@ -45,14 +47,14 @@
 									<div class="table-responsive">
 										<table class="table table-condensed table-bordered table-striped">
 											<thead>
-												<tr>
-													<th>Nome Equipamento</th>
-													<th>Tombamento</th>
-													<th>Mac</th>
-													<th>Status Equipamento</th>
-													<th>Setor Atual</th>
-													<th></th>
-												</tr>
+											<tr>
+												<th>Nome Equipamento</th>
+												<th>Tombamento</th>
+												<th>Mac</th>
+												<th>Status Equipamento</th>
+												<th>Setor Atual</th>
+												<th></th>
+											</tr>
 											</thead>
 											<tbody id="tabelaEquipamento"></tbody>
 										</table>
@@ -67,6 +69,7 @@
 				</div><!-- /.tab-pane -->
 			</div><!-- /.tab-content -->
 		</section>
+	</g:if>
 
 		<g:render template="/equipamento/alterarStatus"/>
 		<g:render template="/equipamento/alterarSetor"/>

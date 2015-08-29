@@ -5,34 +5,57 @@
     <title>TickIT</title>
 </head>
 <body>
-    <div class="login-box">
+<div class="row">
+    %{--<div class="col-lg-12 text-center">
+        <br/><br/><br/>
         <div class="login-logo">
-            <a href="javascript:void(0);"><b>Tick</b>IT</a>
+            <a href="javascript:;"><b>Tick</b>IT</a>
         </div>
-        <div class="login-box-body">
-            <p class="login-box-msg">Autentique-se</p>
-            <g:if test="${flash.error}">
-                <div class="alert alert-warning alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    ${flash.error}
-                </div>
-            </g:if>
-            <g:form action="login">
-                <div class="form-group has-feedback">
-                    <g:textField name="login" class="form-control" placeholder="Login" value="${grails.util.Environment.DEVELOPMENT?'admin':''}"/>
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <g:passwordField name="senha" class="form-control" placeholder="Senha" value="${grails.util.Environment.DEVELOPMENT?'admin':''}"/>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+
+    </div>--}%
+
+    <div class="col-lg-12">
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="javascript:void(0);"><b>Tick</b>IT</a>
+            </div>
+            <div class="login-box-body">
+                <h4 class="login-box-msg">Área Pública</h4>
+                <g:if test="${flash.resposta}">
+                    <div class="alert alert-warning alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        ${flash.resposta}
                     </div>
-                </div>
-            </g:form>
+                </g:if>
+                <g:form action="loginPublico">
+                    <div class="form-group has-feedback">
+                        <g:textField name="matriculaPublica" class="form-control" placeholder="Matrícula" value="${grails.util.Environment.DEVELOPMENT?'publico':''}"/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                %{--<div class="form-group has-feedback">
+                    <g:passwordField name="senhaPubli" class="form-control" placeholder="Senha" value="${grails.util.Environment.DEVELOPMENT?'admin':''}"/>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>--}%
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <br/>
+                            <a href="#modalLoginSuporteId" data-toggle="modal" > Suporte </a>
+                        </div>
+                    </div>
+                </g:form>
+            </div>
         </div>
     </div>
+</div>
+
+
+<g:render template="modalLoginSuporte"/>
+
+
 </body>
 </html>

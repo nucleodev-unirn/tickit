@@ -23,11 +23,11 @@
 			</g:if>
 			<ol class="property-list usuario">
 			
-				<g:if test="${usuarioInstance?.login}">
+				<g:if test="${usuarioInstance?.matricula}">
 				<li class="fieldcontain">
-					<span id="login-label" class="property-label"><g:message code="usuario.login.label" default="Login" /></span>
+					<span id="matricula-label" class="property-label"><g:message code="usuario.matricula.label" default="Matrícula" /></span>
 					
-						<span class="property-value" aria-labelledby="login-label"><g:fieldValue bean="${usuarioInstance}" field="login"/></span>
+						<span class="property-value" aria-labelledby="matricula-label"><g:fieldValue bean="${usuarioInstance}" field="matricula"/></span>
 					
 				</li>
 				</g:if>

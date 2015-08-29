@@ -29,7 +29,7 @@ class AlteracaoStatusEquipamento {
                 json.value(value.dateCreated?.format("dd/MM/yyyy HH:mm"))
             }
             cadastradoPor { value, json ->
-                json.value(value.cadastradoPor?.login)
+                json.value(value.cadastradoPor?.matricula)
 
             }
         }

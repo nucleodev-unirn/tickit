@@ -22,6 +22,7 @@ environments {
             dialect='org.hibernate.dialect.PostgreSQLDialect'
             dbCreate = "update" // one of 'cadastrar', 'cadastrar-drop', 'update', 'validate', ''
 //            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+//            url = "jdbc:postgresql://nucleodev.unirn.edu.br:5432/tickit"
             url = "jdbc:postgresql://localhost:5432/tickit"
             username='unirn'
             password='unirn'

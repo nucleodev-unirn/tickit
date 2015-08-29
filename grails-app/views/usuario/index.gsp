@@ -46,7 +46,7 @@
 								<thead>
 								<tr>
 									
-									<g:sortableColumn params="[q: "${query?:''}"]" property="login" title="${message(code: 'usuario.login.label', default: 'Login')}" />
+									<g:sortableColumn params="[q: "${query?:''}"]" property="matricula" title="${message(code: 'usuario.matricula.label', default: 'Matrícula')}" />
 									
 									<g:sortableColumn params="[q: "${query?:''}"]" property="dateCreated" title="${message(code: 'usuario.dateCreated.label', default: 'Date Created')}" />
 									
@@ -62,7 +62,7 @@
 									<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 										
 										
-										<td>${fieldValue(bean: usuarioInstance, field: "login")}</td>
+										<td>${fieldValue(bean: usuarioInstance, field: "matricula")}</td>
 										
 										
 										<td><g:formatDate date="${usuarioInstance.dateCreated}" format="dd/MM/yyyy HH:mm"/></td>

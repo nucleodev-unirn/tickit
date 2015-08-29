@@ -2,16 +2,16 @@
 
 
 
-<div class="form-group ${hasErrors(bean: usuarioInstance, field: 'login', 'error')} required">
-	<label for="login" class="col-sm-2 control-label">
-		<g:message code="usuario.login.label" default="Login" />
+<div class="form-group ${hasErrors(bean: usuarioInstance, field: 'matricula', 'error')} required">
+	<label for="matricula" class="col-sm-2 control-label">
+		<g:message code="usuario.matricula.label" default="Matrícula" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-5">
-		<g:textField class="form-control input-sm" name="login" required="" value="${usuarioInstance?.login}"/>
+		<g:textField class="form-control input-sm" name="matricula" required="" value="${usuarioInstance?.matricula}"/>
 
-		<g:hasErrors bean="${usuarioInstance}" field="login">
-			<span class="help-block error"><g:renderErrors bean="${usuarioInstance}" field="login" as="list" /></span>
+		<g:hasErrors bean="${usuarioInstance}" field="matricula">
+			<span class="help-block error"><g:renderErrors bean="${usuarioInstance}" field="matricula" as="list" /></span>
 		</g:hasErrors>
 	</div>
 </div>
