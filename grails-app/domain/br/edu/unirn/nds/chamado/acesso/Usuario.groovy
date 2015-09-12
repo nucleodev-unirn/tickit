@@ -4,9 +4,10 @@ import br.edu.unirn.nds.tipos.TipoUsuario
 
 class Usuario {
 //    String login
-    String matricula
+    Funcionario funcionario
+    String matricula        //  em funcionario
     String senha
-    String email
+    String email            //  em funcionario.pessoa
     TipoUsuario tipoUsuario = TipoUsuario.SEM_TIPO
 
     Date dateCreated
@@ -19,6 +20,7 @@ class Usuario {
         email email: true, nullable: true
         senha nullable: true, attributes: [showInList: false]
         tipoUsuario()
+        funcionario(nullable: true)
         dateCreated()
         lastUpdated()
     }

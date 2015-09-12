@@ -83,6 +83,8 @@
                         <li id="setorOpt"><a href="${createLink(controller: 'setor')}">Setores</a></li>
                         <li id="usuarioOpt"><a href="${createLink(controller: 'usuario')}">Usu&aacute;rios</a></li>
                         <li id="statusEquipamentoOpt"><a href="${createLink(controller: 'statusEquipamento')}">Status Equipamento</a></li>
+                        <li id="funcionarioOpt"><a href="${createLink(controller: 'funcionario')}">Funcionário</a></li>
+                        <li id="pessoaOpt"><a href="${createLink(controller: 'pessoa')}">Pessoa</a></li>
 
                     </ul>
                 </li>
