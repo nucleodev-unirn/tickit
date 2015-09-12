@@ -15,7 +15,7 @@ class Pessoa {
     }
 
     def getTiposPessoa(){
-        ['F': "Físico",'J': "Jurídico"]
+        ['F': "FÃ­sico",'J': "JurÃ­dico"]
     }
 
     @Override
