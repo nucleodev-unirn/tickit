@@ -6,6 +6,11 @@ class CategoriaChamado {
 
     String nome
     String descricao
+
+    @Override
+    String toString() {
+        nome
+    }
     Boolean ativo = Boolean.TRUE
 
     Usuario cadastradoPor

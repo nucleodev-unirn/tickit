@@ -27,10 +27,14 @@
 							${flash.message}
 						</div>
 					</g:if>
+
 					<g:hasErrors bean="${chamadoInstance}">
-						<div class="alert alert-warning alert-dismissible" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							Alguns campos precisam ser corrigidos.
+						<div class="alert alert-danger">
+							<ul>
+								<g:eachError bean="${chamadoInstance}" var="error">
+									<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if> > <g:message error="${error}"/></li>
+								</g:eachError>
+							</ul>
 						</div>
 					</g:hasErrors>
 					<g:form class="form-horizontal" novalidate="novalidate" name="chamadoInstanceForm" url="[resource:chamadoInstance, action:'save']" >
