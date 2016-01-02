@@ -23,7 +23,7 @@
 <div class="wrapper">
 
     <header class="main-header">
-        <a href="../../index2.html" class="logo"><b>Tick</b>IT</a>
+        <a href="#" class="logo"><b>Tick</b>IT</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
@@ -39,7 +39,7 @@
                     <li class="dropdown options">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="glyphicon glyphicon-user"></i>
-                            <span class="hidden-xs">${session.usuario?.matricula}</span>
+                            <span class="hidden-xs">${session.usuario?.login}</span>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu animated bounceIn" role="menu">
@@ -123,6 +123,10 @@
                         <li id="categoriaChamadoOpt"><a href="${createLink(controller: 'categoriaChamado')}">Categoria Chamado</a></li>
                         <li id="comentarioChamadoOpt"><a href="${createLink(controller: 'comentarioChamado')}">Comentário Chamado</a></li>
                         <li id="anexoChamadoOpt"><a href="${createLink(controller: 'anexoChamado')}">Anexo Chamado</a></li>
+
+                        <li id="problemaOpt"><a href="${createLink(controller: 'problema')}"> Problema </a></li>
+                        <li id="informacaoAdicionalOpt"><a href="${createLink(controller: 'informacaoAdicional')}"> Informação Adicional de Problema</a></li>
+                        <li id="problemaInformacaoOpt"><a href="${createLink(controller: 'problemaInformacao')}"> Problema/Informação </a></li>
 
                     </ul>
                 </li>
