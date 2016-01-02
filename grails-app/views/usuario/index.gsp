@@ -46,13 +46,13 @@
 								<thead>
 								<tr>
 									
-									<g:sortableColumn params="[q: "${query?:''}"]" property="matricula" title="${message(code: 'usuario.matricula.label', default: 'Matrícula')}" />
+									<g:sortableColumn params='[q: "${query?:''}"]' property="login" title="${message(code: 'usuario.login.label', default: 'Login')}" />
 									
-									<g:sortableColumn params="[q: "${query?:''}"]" property="dateCreated" title="${message(code: 'usuario.dateCreated.label', default: 'Date Created')}" />
+									<g:sortableColumn params='[q: "${query?:''}"]' property="dateCreated" title="${message(code: 'usuario.dateCreated.label', default: 'Date Created')}" />
 									
-									<g:sortableColumn params="[q: "${query?:''}"]" property="lastUpdated" title="${message(code: 'usuario.lastUpdated.label', default: 'Last Updated')}" />
+									<g:sortableColumn params='[q: "${query?:''}"]' property="lastUpdated" title="${message(code: 'usuario.lastUpdated.label', default: 'Last Updated')}" />
 									
-									<g:sortableColumn params="[q: "${query?:''}"]" property="ativo" title="${message(code: 'usuario.ativo.label', default: 'Ativo')}" />
+									<g:sortableColumn params='[q: "${query?:''}"]' property="ativo" title="${message(code: 'usuario.ativo.label', default: 'Ativo')}" />
 									
 									<th></th>
 								</tr>
@@ -62,7 +62,7 @@
 									<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 										
 										
-										<td>${fieldValue(bean: usuarioInstance, field: "matricula")}</td>
+										<td>${fieldValue(bean: usuarioInstance, field: "login")}</td>
 										
 										
 										<td><g:formatDate date="${usuarioInstance.dateCreated}" format="dd/MM/yyyy HH:mm"/></td>
@@ -84,7 +84,7 @@
 								</tbody>
 							</table>
 							<div class="pagination">
-								<g:paginate params="[q: "${query?:''}"]" class="pagination-sm" total="${usuarioInstanceCount ?: 0}" />
+								<g:paginate params='[q: "${query?:''}"]' class="pagination-sm" total="${usuarioInstanceCount ?: 0}" />
 							</div>
 						</div>
 					</div>
