@@ -6,13 +6,6 @@
 </head>
 <body>
 <div class="row">
-    %{--<div class="col-lg-12 text-center">
-        <br/><br/><br/>
-        <div class="login-logo">
-            <a href="javascript:;"><b>Tick</b>IT</a>
-        </div>
-
-    </div>--}%
 
     <div class="col-lg-12">
         <div class="login-box">
@@ -32,10 +25,6 @@
                         <g:textField name="matriculaPublica" class="form-control" placeholder="Matrícula" value="${grails.util.Environment.DEVELOPMENT?'publico':''}"/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
-                %{--<div class="form-group has-feedback">
-                    <g:passwordField name="senhaPubli" class="form-control" placeholder="Senha" value="${grails.util.Environment.DEVELOPMENT?'admin':''}"/>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>--}%
                     <div class="row">
                         <div class="col-xs-12">
                             <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>

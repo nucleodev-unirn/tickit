@@ -7,7 +7,7 @@ class AutenticacaoController {
     def index() {}
 
     def login(){
-        def usuario = Usuario.findByMatriculaAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.ADMINISTRADOR)?: Usuario.findByMatriculaAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.FUNCIONARIO)
+        def usuario = Usuario.findByLoginAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.ADMINISTRADOR)?: Usuario.findByLoginAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.FUNCIONARIO)
         if(!usuario){
             flash.error = "Login ou Senha incorreto!"
             redirect action: "index"
@@ -19,7 +19,7 @@ class AutenticacaoController {
     }
 
     def loginPublico(){
-        def usuario = Usuario.findByMatriculaAndTipoUsuario(params.matriculaPublica, TipoUsuario.COMUM)
+        def usuario = Usuario.findByLoginAndTipoUsuario(params.matriculaPublica, TipoUsuario.COMUM)
         if(!usuario){
             flash.resposta = "Login ou Senha incorreto!"
             redirect action: "index"

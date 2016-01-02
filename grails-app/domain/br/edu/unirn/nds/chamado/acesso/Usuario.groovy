@@ -3,9 +3,9 @@ package br.edu.unirn.nds.chamado.acesso
 import br.edu.unirn.nds.tipos.TipoUsuario
 
 class Usuario {
-//    String login
+
+    String login
     Funcionario funcionario
-    String matricula        //  em funcionario
     String senha
     String email            //  em funcionario.pessoa
     TipoUsuario tipoUsuario = TipoUsuario.SEM_TIPO
@@ -16,7 +16,7 @@ class Usuario {
     Boolean ativo = Boolean.TRUE
 
     static constraints = {
-        matricula()
+        login()
         email email: true, nullable: true
         senha nullable: true, attributes: [showInList: false]
         tipoUsuario()
@@ -35,8 +35,7 @@ class Usuario {
 
     @Override
     String toString() {
-//        return super.toString()
-        "${matricula}"
+        login
     }
 }
 

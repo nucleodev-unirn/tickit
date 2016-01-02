@@ -15,7 +15,7 @@ var TICKIT = (function($) {
 	return {
 		init: init,
 		selectMenu: selectMenu
-	}
+	};
 
 	function init(){
 		$('[data-toggle="tooltip"]').tooltip();

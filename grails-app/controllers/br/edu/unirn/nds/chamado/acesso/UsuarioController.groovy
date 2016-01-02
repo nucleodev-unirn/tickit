@@ -1,6 +1,7 @@
 package br.edu.unirn.nds.chamado.acesso
 
-
+import grails.util.Environment
+import org.apache.commons.lang.exception.ExceptionUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import static org.springframework.http.HttpStatus.*
@@ -10,6 +11,7 @@ import org.codehaus.groovy.grails.commons.GrailsClassUtils
 @Transactional(readOnly = true)
 class UsuarioController {
 
+    def mailService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -48,12 +50,38 @@ class UsuarioController {
             return
         }
 
+        usuarioInstance.save flush: true
+
         if (usuarioInstance.hasErrors()) {
             respond usuarioInstance.errors, view: 'create'
             return
         }
 
-        usuarioInstance.save flush: true
+        if (Environment.developmentMode) {
+            def msgEmail = ""
+            msgEmail += """
+                            <p>
+								Bem vindo ao TickIT, Sistema de Cadastro de Chamados de TI da UNIRN.
+                            </p>
+                            <p>
+								Recentemente alguém realizou cadastro de usuário usando esta conta de email. Abaixo seguem suas informações de usuário e link de acesso ao sistema.
+                            </p>
+                            <p>
+                                <strong> Login: </strong> ${usuarioInstance?.login}
+                                <strong> Senha: </strong> ${usuarioInstance?.senha}
+                                <strong> <a href="${g.createLink(absolute: true, controller: 'autenticacao', action: 'index')}" target="_blank"> Clique aqui para acessar! </a> </strong>
+                            </p>
+                            <p>
+								<strong>Este usuário foi cadastrado Por (login)</strong>: ${session?.usuario?.login} <br/>
+                            </p>
+                        """
+
+            mailService.sendMail {
+                to "marciodavimm@gmail.com"
+                subject "[UNIRN/TICKIT][${Environment?.current?.name}] - Confirmação de Cadastro de Usuário!"
+                html msgEmail
+            }
+        }
 
         request.withFormat {
             form multipartForm {
