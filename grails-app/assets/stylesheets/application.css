@@ -12,4 +12,6 @@
 *= require AdminLTE
 *= require skin-blue
 *= require style.css
+*= require carrossel/carousel.css
+*= require carrossel/ie10-viewport-bug-workaround.css
 */

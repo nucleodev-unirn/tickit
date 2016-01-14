@@ -8,6 +8,9 @@
 //= require jquery
 //= require bootstrap
 //= require app.min.js
+//= require carrossel/ie10-viewport-bug-workaround
+//= require carrossel/ie-emulation-modes-warning
+//= require carrossel/holder.min.js
 //= require_self
 
 var TICKIT = (function($) {

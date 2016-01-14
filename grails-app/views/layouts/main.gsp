@@ -51,6 +51,9 @@
                                 <a href="${createLink(controller: 'autenticacao', action: 'logout')}">
                                     <span class="icon"><i class="fa fa-sign-out"></i>
                                     </span>Sair</a>
+                                <a href="${createLink(controller: 'index', action: 'index2')}">
+                                    <span class="icon"><i class="fa fa-sign-out"></i>
+                                    </span>Modelo Carousel</a>
                             </li>
                         </ul>
                     </li>
