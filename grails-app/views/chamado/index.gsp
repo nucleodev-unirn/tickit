@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="mainPublic">
 		<g:set var="entityName" value="${message(code: 'chamado.label', default: 'Chamado')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
@@ -11,8 +11,6 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<ol class="breadcrumb">
-				%{--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--}%
 				<li class="active">Listagem</li>
 			</ol>
 		</section>

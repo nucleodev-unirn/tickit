@@ -2,6 +2,7 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <g:form name="loginSuporteForm" controller="autenticacao" action="login" class="form-horizontal">
+                <g:hiddenField name="cmd" value="${params?.cmd}"/>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     %{--<div class="login-logo">--}%

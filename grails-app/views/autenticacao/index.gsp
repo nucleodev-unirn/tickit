@@ -21,6 +21,7 @@
                     </div>
                 </g:if>
                 <g:form action="loginPublico">
+                    <g:hiddenField name="cmd" value="${params?.cmd}"/>
                     <div class="form-group has-feedback">
                         <g:textField name="matriculaPublica" class="form-control" placeholder="Matrícula" value="${grails.util.Environment.DEVELOPMENT?'publico':''}"/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>

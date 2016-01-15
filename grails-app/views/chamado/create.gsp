@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="mainPublic">
 		<g:set var="entityName" value="${message(code: 'chamado.label', default: 'Chamado')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
@@ -43,6 +43,7 @@
 				</div>
 				<div class="box-footer clearfix">
 					<button type="submit" form="chamadoInstanceForm" class="btn btn-success pull-right"><i class="fa fa-check"></i> <g:message code="default.button.create.label"  default="Create"/></button>
+					<g:link controller="index" action="index2" class="btn btn-danger pull-left"><i class="fa fa-close"></i> <g:message code="default.button.cancel.label"  default="Cancelar"/></g:link>
 				</div>
 			</div>
 		</section>
