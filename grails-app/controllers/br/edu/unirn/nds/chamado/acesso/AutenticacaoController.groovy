@@ -4,9 +4,33 @@ import br.edu.unirn.nds.tipos.TipoUsuario
 
 class AutenticacaoController {
 
-    def index() {}
+    def index() {
+        if(!session?.usuario){
+            render view: 'index'
+            return
+        }
+
+        def destino = ''
+        switch (params?.cmd){
+            case "open":
+                destino = createLink(controller: 'chamado', action: 'create', absolute: true)
+                break
+            case "view":
+                destino = createLink(controller: 'chamado', action: 'index', absolute: true)
+                break
+            case "tutorial":
+                destino = createLink(controller: 'index', action: 'tutorial', absolute: true)
+                break
+            default:
+                render view: 'index'
+                return
+                break
+        }
+        redirect url: destino , params: params
+    }
 
     def login(){
+
         def usuario = Usuario.findByLoginAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.ADMINISTRADOR)?: Usuario.findByLoginAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.FUNCIONARIO)
         if(!usuario){
             flash.error = "Login ou Senha incorreto!"
@@ -14,7 +38,24 @@ class AutenticacaoController {
             return
         }else{
             session.usuario = usuario
-            redirect controller: "index", action: "index"
+
+            def destino = ''
+            switch (params?.cmd){
+                case "open":
+                    destino = createLink(controller: 'chamado', action: 'create', absolute: true)
+                    break
+                case "view":
+                    destino = createLink(controller: 'chamado', action: 'index', absolute: true)
+                    break
+                case "tutorial":
+                    destino = createLink(controller: 'index', action: 'tutorial', absolute: true)
+                    break
+                default:
+                    redirect controller: "index", action: "index"
+                    return
+                    break
+            }
+            redirect url: destino , params: params
         }
     }
 
@@ -26,7 +67,25 @@ class AutenticacaoController {
             return
         }else{
             session.usuario = usuario
-            redirect controller: "index", action: "index"
+
+            def destino = ''
+            switch (params?.cmd){
+                case "open":
+                    destino = createLink(controller: 'chamado', action: 'create', absolute: true)
+                    break
+                case "view":
+                    destino = createLink(controller: 'chamado', action: 'index', absolute: true)
+                    break
+                case "tutorial":
+                    destino = createLink(controller: 'index', action: 'tutorial', absolute: true)
+                    break
+                default:
+                    redirect controller: "index", action: "index2"
+                    return
+                    break
+            }
+            redirect url: destino , params: params
+
         }
     }
 
