@@ -1,3 +1,7 @@
+import grails.util.Environment
+import org.apache.log4j.*
+
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -74,7 +78,7 @@ grails.spring.bean.packages = []
 grails.web.disable.multipart=false
 
 // request parameters to mask when logging exceptions
-grails.exceptionresolver.params.exclude = ['password']
+grails.exceptionresolver.params.exclude = ['password', 'passwordRepeat', 'passwordConfirm']
 
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
@@ -95,25 +99,96 @@ environments {
     }
 }
 
-// log4j configuration
-log4j.main = {
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+// config do twitter-bootstrap
+grails.plugins.twitterbootstrap.fixtaglib = true
+
+// configuracoes do asset-pipeline
+grails.assets.bundle=true
+grails.assets.minifyJs = false
+
+
+// config do log4j
+//     Example of changing the log pattern for the default console appender:
+//    appenders {
+//        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+//    }
+//  set log level para artefatos: controllers, services, domain, filters, conf, taglib
+//  log levels: off, fatal, error, warn, info, debug, trace, all
+log4j = {
+
+    info 'grails.app.controllers'
+    info 'grails.app.services'
+    info 'br.com.sigsoftware'
+    info 'br.com.esig'
+    error 'br.com.sigsoftware'
+    error 'br.com.esig'
+
+    def logSimplePattern = new PatternLayout("[%p] [%c{3}] %m%n")
+    def logLayoutPattern = new PatternLayout("%d{yyyy-MM-dd/HH:mm:ss.SSS} [%t] %x %-5p %c{2} - %m%n")
+
+    appenders {
+
+        appender new DailyRollingFileAppender(name: "customAppender",
+                threshold: Level.toLevel("INFO"),
+                file: "logs/tickit.log",
+                datePattern: "'['yyyy-MM-dd'].log'",   //Rollover at midnight each day.
+                layout: logLayoutPattern
+        )
+
+        appender new ConsoleAppender(name: "console",
+                threshold: Level.toLevel("INFO"),
+                layout: logSimplePattern
+        )
+    }
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
+
+    debug stdout:  'grails.app.controllers'
+    info stdout:  'grails.app.services'
+
+    List<String> loggers = []
+    loggers.add('customAppender')
+    if (Environment.current.name == "development" || Environment.current.name == "test") {
+        loggers.add('console')
+    }
+
+    root {
+        debug loggers as String[]
+        additivity = true
+    }
 }
 
-grails.plugins.twitterbootstrap.fixtaglib = true
+
+// criar conta de email para projeto e configurar opções aqui.
+grails.mail.default.from="exemplo@gmail.com"
+grails {
+    mail {
+        host = "smtp.gmail.com.br"
+        port = 587
+        username = "exemplo@gmail.com"
+        password = "senha"
+        props = ["mail.smtp.auth":"true",
+                 "mail.smtp.socketFactory.port":"587",
+                 "mail.smtp.socketFactory.fallback":"false"]
+    }
+}
+
+
+// configurações do plugin angularjs
+//grails.plugin.angularjs.version = "1.4.8"
+//grails.plugin.angularjs.i18n = ["pt-br", "de-de", "en-us"]
+//grails.plugin.angularjs.modules = ["animate", "cookies", "loader", "mocks", "resource", "route", "sanitize", "touch"]
+//grails.plugin.angularjs.resourcesDisposition = "head"
+//grails.plugin.angularjs.resourcesNominify = true
+//grails.plugin.angularjs.autoDownload = true
+

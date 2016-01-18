@@ -60,7 +60,8 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
-        compile ":asset-pipeline:2.1.5"
+//        compile ":asset-pipeline:2.1.5"
+        compile ":asset-pipeline:2.3.2"
         compile ":twitter-bootstrap:3.3.4"
         compile ":mail:1.0.7"
 
@@ -68,13 +69,22 @@ grails.project.dependency.resolution = {
         runtime ":hibernate4:4.3.8.1" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
+        compile ":jquery-ui:1.10.4"
 
-        // Uncomment these to enable additional asset-pipeline capabilities
-        //compile ":sass-asset-pipeline:1.9.0"
-        //compile ":less-asset-pipeline:1.10.0"
-        //compile ":coffee-asset-pipeline:1.8.0"
-        //compile ":handlebars-asset-pipeline:1.3.0.3"
+//        Uncomment these to enable additional asset-pipeline capabilities
+//        compile ":sass-asset-pipeline:1.9.0"
+//        compile ":less-asset-pipeline:1.10.0"
+//        compile ":coffee-asset-pipeline:1.8.0"
+//        compile ":handlebars-asset-pipeline:1.3.0.3"
 
         compile ":marshallers:0.6"
+
+//        agendador de jobs com expressoes cron
+//        compile ":quartz:1.0.2"
+//        compile ":quartz-monitor:1.1"
+
+//        AngularJS
+//        compile ":angularjs:1.0.0"
+
     }
 }
