@@ -11,7 +11,6 @@
 </head>
 <body>
 
-%{--<div class="col-lg-12">--}%
   <!-- Carousel    ================================================== -->
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -27,8 +26,6 @@
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Abrir Chamado</h1>--}%
-            %{--<p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>--}%
-            %{--<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>--}%
           </div>
         </div>
       </div>
@@ -37,8 +34,6 @@
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Visualizar Chamados</h1>--}%
-            %{--<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>--}%
-            %{--<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>--}%
           </div>
         </div>
       </div>
@@ -47,8 +42,6 @@
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Fale Conosco</h1>--}%
-            %{--<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>--}%
-            %{--<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>--}%
           </div>
         </div>
       </div>
@@ -57,8 +50,6 @@
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Tutorial</h1>--}%
-            %{--<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>--}%
-            %{--<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>--}%
           </div>
         </div>
       </div>
@@ -72,8 +63,6 @@
       <span class="sr-only">Next</span>
     </a>
   </div><!-- /.carousel -->
-%{--</div>--}%
-
 
 
 <!-- Marketing messaging and featurettes
@@ -128,16 +117,5 @@
 
 </div><!-- /.container -->
 
-
-<!-- Bootstrap core JavaScript
-      ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-%{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--}%
-%{--<script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>--}%
-%{--<script src="bootstrap.min.js"></script>--}%
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-%{--<script src="holder.min.js"></script>--}%
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-%{--<script src="ie10-viewport-bug-workaround.js"></script>--}%
 </body>
 </html>
