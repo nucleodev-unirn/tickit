@@ -21,6 +21,7 @@ class Setor {
         ativo ()
 
         cadastradoPor attributes: [showInList: false]
+        lastUpdated (nullable: true)
         ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]

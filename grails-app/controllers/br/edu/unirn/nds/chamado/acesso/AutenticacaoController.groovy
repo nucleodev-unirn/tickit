@@ -34,7 +34,7 @@ class AutenticacaoController {
         def usuario = Usuario.findByLoginAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.ADMINISTRADOR)?: Usuario.findByLoginAndSenhaAndTipoUsuario(params.matricula, params.senha?.encodeAsSHA256(), TipoUsuario.FUNCIONARIO)
         if(!usuario){
             flash.error = "Login ou Senha incorreto!"
-            redirect action: "index"
+            redirect action: "index" , params: params
             return
         }else{
             session.usuario = usuario
@@ -63,7 +63,7 @@ class AutenticacaoController {
         def usuario = Usuario.findByLoginAndTipoUsuario(params.matriculaPublica, TipoUsuario.COMUM)
         if(!usuario){
             flash.resposta = "Login ou Senha incorreto!"
-            redirect action: "index"
+            redirect action: "index" , params: params
             return
         }else{
             session.usuario = usuario
@@ -91,6 +91,7 @@ class AutenticacaoController {
 
     def logout(){
         session.invalidate()
-        redirect action: "index"
+        flash.resposta = "Sessão Encerrada"
+        redirect controller: 'index', action: "index2"
     }
 }

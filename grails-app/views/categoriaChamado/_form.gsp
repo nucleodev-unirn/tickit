@@ -1,5 +1,6 @@
 <%@ page import="br.edu.unirn.nds.chamado.base.CategoriaChamado" %>
 
+<g:hiddenField name="cadastradoPor" value="${session.usuario?.id}"  />
 
 
 <div class="form-group ${hasErrors(bean: categoriaChamadoInstance, field: 'nome', 'error')} required">
@@ -45,9 +46,7 @@
 </div>
 
 		
-			<g:hiddenField name="cadastradoPor" value="${session.usuario?.id}"  />
-		
-<div class="form-group ${hasErrors(bean: categoriaChamadoInstance, field: 'ultimaAtualizacaoPor', 'error')} required">
+%{--<div class="form-group ${hasErrors(bean: categoriaChamadoInstance, field: 'ultimaAtualizacaoPor', 'error')} required">
 	<label for="ultimaAtualizacaoPor" class="col-sm-2 control-label">
 		<g:message code="categoriaChamado.ultimaAtualizacaoPor.label" default="Ultima Atualizacao Por" />
 		<span class="required-indicator">*</span>
@@ -59,9 +58,10 @@
 			<span class="help-block error"><g:renderErrors bean="${categoriaChamadoInstance}" field="ultimaAtualizacaoPor" as="list" /></span>
 		</g:hasErrors>
 	</div>
-</div>
+</div>--}%
 
-<div class="form-group ${hasErrors(bean: categoriaChamadoInstance, field: 'desativadoPor', 'error')} required">
+
+%{--<div class="form-group ${hasErrors(bean: categoriaChamadoInstance, field: 'desativadoPor', 'error')} required">
 	<label for="desativadoPor" class="col-sm-2 control-label">
 		<g:message code="categoriaChamado.desativadoPor.label" default="Desativado Por" />
 		<span class="required-indicator">*</span>
@@ -73,9 +73,10 @@
 			<span class="help-block error"><g:renderErrors bean="${categoriaChamadoInstance}" field="desativadoPor" as="list" /></span>
 		</g:hasErrors>
 	</div>
-</div>
+</div>--}%
 
-<div class="form-group ${hasErrors(bean: categoriaChamadoInstance, field: 'dataDesativacao', 'error')} required">
+
+%{--<div class="form-group ${hasErrors(bean: categoriaChamadoInstance, field: 'dataDesativacao', 'error')} required">
 	<label for="dataDesativacao" class="col-sm-2 control-label">
 		<g:message code="categoriaChamado.dataDesativacao.label" default="Data Desativacao" />
 		<span class="required-indicator">*</span>
@@ -87,5 +88,5 @@
 			<span class="help-block error"><g:renderErrors bean="${categoriaChamadoInstance}" field="dataDesativacao" as="list" /></span>
 		</g:hasErrors>
 	</div>
-</div>
+</div>--}%
 

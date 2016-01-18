@@ -22,6 +22,7 @@ var TICKIT = (function($) {
 
 	function init(){
 		$('[data-toggle="tooltip"]').tooltip();
+		$('.tickit-btn-scrolltop').on('click', scrollTop);
 	}
 
 	function selectMenu(id){
@@ -31,6 +32,10 @@ var TICKIT = (function($) {
 		$opt.parent().addClass('menu-open');
 		$opt.parent().parent().addClass('active');
 		$opt.addClass('active');
+	}
+
+	function scrollTop(){
+		$('html,body').animate({scrollTop:0}, 'slow');
 	}
 
 })(jQuery);

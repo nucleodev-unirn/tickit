@@ -1,10 +1,12 @@
 package br.edu.unirn.nds.chamado.base
 
 import br.edu.unirn.nds.chamado.acesso.Usuario
+import br.edu.unirn.nds.chamado.problema.Problema
 
 class Chamado {
 
     CategoriaChamado categoriaChamado
+    Problema problema
     Setor setorSolicitante
     String titulo
     String nomeSolicitante
@@ -23,21 +25,22 @@ class Chamado {
 
     static constraints = {
         categoriaChamado()
+        problema()
         setorSolicitante()
         titulo()
         nomeSolicitante()
         emailSolicitante()
         descricao()
-        avaliacao()
+        avaliacao(nullable: true)
         tags()
 
         ativo()
         cadastradoPor ()
         dateCreated ()
-        ultimaAtualizacaoPor ()
-        lastUpdated ()
-        desativadoPor ()
-        dataDesativacao ()
+        lastUpdated (nullable: true)
+        ultimaAtualizacaoPor (nullable: true)
+        dataDesativacao (nullable: true)
+        desativadoPor (nullable: true)
     }
 
     static searchFields = ["titulo", "nomeSolicitante", "emailSolicitante", "descricao" , "avaliacao" , "tags" ]

@@ -27,9 +27,9 @@ class EmpresaLocacao {
         observacao nullable: true
         ativo()
 
-        dateCreated attributes: [showInList: false]
-        lastUpdated attributes: [showInList: false]
         cadastradoPor attributes: [showInList: false]
+        dateCreated attributes: [showInList: false]
+        lastUpdated attributes: [showInList: false], nullable: true
         ultimaAtualizacaoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         desativadoPor nullable: true, attributes: [ showInForm: false, showInList: false]
         dataDesativacao nullable: true, attributes: [ showInForm: false, showInList: false]

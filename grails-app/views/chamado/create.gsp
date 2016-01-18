@@ -38,7 +38,9 @@
 						</div>
 					</g:hasErrors>
 					<g:form class="form-horizontal" novalidate="novalidate" name="chamadoInstanceForm" url="[resource:chamadoInstance, action:'save']" >
-						<g:render template="form"/>
+						<div class="row">
+							<g:render template="form"/>
+						</div>
 					</g:form>
 				</div>
 				<div class="box-footer clearfix">

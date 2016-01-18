@@ -23,7 +23,9 @@
 <div class="wrapper">
 
     <header class="main-header">
-        <a href="#" class="logo"><b>Tick</b>IT</a>
+        %{--<g:link controller="index" action="index2" class="logo" > <b>Tick</b>IT </g:link>--}%
+        <g:link controller="index" action="index" class="logo" > Tick<b>IT</b> </g:link>
+        %{--<a href="#" class="logo"><b>Tick</b>IT</a>--}%
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
@@ -35,6 +37,7 @@
             </a>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+                    <li> <g:link controller="index" action="index2" > <b>Área Pública</b> </g:link> </li>
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown options">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -51,9 +54,6 @@
                                 <a href="${createLink(controller: 'autenticacao', action: 'logout')}">
                                     <span class="icon"><i class="fa fa-sign-out"></i>
                                     </span>Sair</a>
-                                <a href="${createLink(controller: 'index', action: 'index2')}">
-                                    <span class="icon"><i class="fa fa-sign-out"></i>
-                                    </span>Modelo Carousel</a>
                             </li>
                         </ul>
                     </li>

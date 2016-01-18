@@ -7,4 +7,6 @@ class IndexController {
     def index2() {
         render view: 'index_carousel'
     }
+
+    def tutorial() {}
 }

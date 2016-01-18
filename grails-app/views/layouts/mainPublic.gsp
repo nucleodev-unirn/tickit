@@ -18,6 +18,10 @@
     <asset:stylesheet src="application.css"/>
     <asset:javascript src="application.js"/>
     <g:layoutHead/>
+
+    <style>
+        body { padding-top: 50px; }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -34,12 +38,17 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li> <g:link controller="index" action="index" class="">Início</g:link> </li>
+                <li> <g:link controller="index" action="index2" class="">Área Pública</g:link> </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li> <a href="#"> Fale Conosco </a> </li>
-                <li> <g:link controller="autenticacao" action="index" > Login </g:link> </li>
+                <g:if test="${session?.usuario}">
+                    <li> <g:link controller="autenticacao" action="logout" > Logout: ${session?.usuario} </g:link> </li>
+                </g:if>
+                <g:else>
+                    <li> <g:link controller="autenticacao" action="index" > Login </g:link> </li>
+                </g:else>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Opções <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -64,7 +73,7 @@
 <!-- FOOTER -->
 <footer class="text-center" >
     <div class=" hidden-xs">
-        <p > <strong><a href="#">Topo da Página</a> </strong> </p>
+        <p > <strong><a href="javascript:;" class="btn btn-xs btn-primary tickit-btn-scrolltop"> Topo da Página <i class="fa fa-level-up"></i> </a> </strong> </p>
         <p>
             <strong>&copy; 2015 <a href="javascript:void(0);">NDS-UNIRN</a>.</strong> <br/>
             <b>Version</b> <g:meta name="app.version"/>

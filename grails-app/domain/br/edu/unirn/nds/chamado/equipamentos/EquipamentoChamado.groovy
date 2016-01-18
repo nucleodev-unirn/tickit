@@ -23,9 +23,9 @@ class EquipamentoChamado {
         ativo()
         cadastradoPor ()
         dateCreated ()
-        ultimaAtualizacaoPor ()
-        lastUpdated ()
-        desativadoPor ()
-        dataDesativacao ()
+        lastUpdated (nullable: true)
+        ultimaAtualizacaoPor (nullable: true)
+        dataDesativacao (nullable: true)
+        desativadoPor (nullable: true)
     }
 }
