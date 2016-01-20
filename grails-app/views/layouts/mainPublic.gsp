@@ -42,6 +42,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li> <g:link controller="index" action="testMail"> Teste Mail </g:link> </li>
                 <li> <a href="#"> Fale Conosco </a> </li>
                 <g:if test="${session?.usuario}">
                     <li> <g:link controller="autenticacao" action="logout" > Logout: ${session?.usuario} </g:link> </li>

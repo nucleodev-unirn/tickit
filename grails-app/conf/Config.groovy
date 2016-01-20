@@ -170,16 +170,18 @@ log4j = {
 
 
 // criar conta de email para projeto e configurar opções aqui.
-grails.mail.default.from="exemplo@gmail.com"
+grails.mail.default.from="tickit@unirn.edu.br"
 grails {
     mail {
-        host = "smtp.gmail.com.br"
+        host = "mail.unirn.edu.br"
         port = 587
-        username = "exemplo@gmail.com"
-        password = "senha"
+        username = "tickit@unirn.edu.br"
+        password = "senha123"
         props = ["mail.smtp.auth":"true",
-                 "mail.smtp.socketFactory.port":"587",
-                 "mail.smtp.socketFactory.fallback":"false"]
+                 "mail.smtp.socketFactory.port":"587"/*,
+                 "mail.smtp.socketFactory.fallback":"false"*/]
+//        host = "smtp.gmail.com.br"
+//        username = "exemplo@gmail.com"
     }
 }
 
