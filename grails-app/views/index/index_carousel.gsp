@@ -17,7 +17,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <asset:image src="samples/slide-abrirChamado.png" class="first-slide" alt="Abrir Chamado"/>
+        <asset:image src="samples/slide-abrirChamado.PNG" class="first-slide" alt="Abrir Chamado"/>
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Abrir Chamado</h1>--}%
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="item">
-        <asset:image src="samples/slide-visualizarChamado.png" class="first-slide" alt="Visualizar Chamados"/>
+        <asset:image src="samples/slide-visualizarChamado.PNG" class="first-slide" alt="Visualizar Chamados"/>
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Visualizar Chamados</h1>--}%
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="item">
-        <asset:image src="samples/slide-faleConosco.png" class="first-slide" alt="Fale Conosco"/>
+        <asset:image src="samples/slide-faleConosco.PNG" class="first-slide" alt="Fale Conosco"/>
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Fale Conosco</h1>--}%
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="item">
-        <asset:image src="samples/slide-tutorial.png" class="first-slide" alt="Tutorial"/>
+        <asset:image src="samples/slide-tutorial.PNG" class="first-slide" alt="Tutorial"/>
         <div class="container">
           <div class="carousel-caption">
             %{--<h1>Tutorial</h1>--}%
