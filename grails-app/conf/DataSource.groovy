@@ -37,7 +37,16 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
+            driverClassName = "org.postgresql.Driver"
+            dialect='org.hibernate.dialect.PostgreSQLDialect'
+            dbCreate = "update" // one of 'cadastrar', 'cadastrar-drop', 'update', 'validate', ''
+            url = "jdbc:postgresql://localhost:5432/tickit_develop"
+//            url = "jdbc:postgresql://nucleodev.unirn.edu.br:5432/tickit_develop"
+            username='tickit_app_role'
+            password='tickit_app_role'
+            loggingSql = true
+			
+            /*dbCreate = "update"
             url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
@@ -58,7 +67,7 @@ environments {
                testOnReturn = false
                jdbcInterceptors = "ConnectionState"
                defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
-            }
+            }*/
         }
     }
 }
