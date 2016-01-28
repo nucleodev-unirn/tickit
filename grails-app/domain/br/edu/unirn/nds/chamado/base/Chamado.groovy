@@ -32,7 +32,7 @@ class Chamado {
         emailSolicitante()
         descricao()
         avaliacao(nullable: true)
-        tags()
+        tags(nullable: true)
 
         ativo()
         cadastradoPor ()
