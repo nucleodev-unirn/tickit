@@ -23,6 +23,11 @@ var TICKIT = (function($) {
 	function init(){
 		$('[data-toggle="tooltip"]').tooltip();
 		$('.tickit-btn-scrolltop').on('click', scrollTop);
+		$('button.tickit-btn-scroll-to-anchor').on('click', function(){
+			var destino = $(this).data("destino");
+			console.log(destino);
+			$("html,body").animate({scrollTop: $(destino).offset().top},'slow')
+		});
 	}
 
 	function selectMenu(id){

@@ -42,8 +42,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li> <g:link controller="index" action="testMail"> Teste Mail </g:link> </li>
-                <li> <a href="#"> Fale Conosco </a> </li>
+                <li> <a href="javascript:;" data-toggle="modal" data-target="#modalMailId"> Deixe seu recado </a> </li>
                 <g:if test="${session?.usuario}">
                     <li> <g:link controller="autenticacao" action="logout" > Logout: ${session?.usuario} </g:link> </li>
                 </g:if>
@@ -74,13 +73,15 @@
 <!-- FOOTER -->
 <footer class="text-center" >
     <div class=" hidden-xs">
-        <p > <strong><a href="javascript:;" class="btn btn-xs btn-primary tickit-btn-scrolltop"> Topo da Página <i class="fa fa-level-up"></i> </a> </strong> </p>
+        <p > <strong><a href="javascript:;" class="btn btn-xs btn-default tickit-btn-scrolltop"> Topo da Página <i class="fa fa-hand-o-up"></i> </a> </strong> </p>
         <p>
             <strong>&copy; 2015 <a href="javascript:void(0);">NDS-UNIRN</a>.</strong> <br/>
             <b>Version</b> <g:meta name="app.version"/>
         </p>
     </div>
 </footer>
+
+<g:render template="modalMail" />
 
 </body>
 </html>

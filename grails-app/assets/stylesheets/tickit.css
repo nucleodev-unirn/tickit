@@ -25,7 +25,19 @@
 }
 
 .tickit-box-text {
-    margin-left: 20px
+    margin-left: 20px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.tickit-box-img {
+    float: left;
+}
+
+.tickit-jumbotron {
+	margin-top: 40px;
+	padding: 5px 20px 5px;
+    border: 5px solid #001a35;	
 }
 
 .tickit-box,.col-lg-6{
@@ -43,5 +55,9 @@
 .navbar ,.navbar-inverse {
     background-color: #001a35;
     border-color: #001a35;
+}
+
+.carousel {
+	margin-top: 60px;
 }
 
