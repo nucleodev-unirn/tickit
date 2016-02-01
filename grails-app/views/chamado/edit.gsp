@@ -43,7 +43,7 @@
 							Alguns campos precisam ser corrigidos.
 						</div>
 					</g:hasErrors>
-					<g:form class="form-horizontal" novalidate="novalidate" name="chamadoInstanceForm" url="[resource:chamadoInstance, action:'update']" method="PUT" >
+					<g:form useToken="true" class="form-horizontal" novalidate="novalidate" name="chamadoInstanceForm" url="[resource:chamadoInstance, action:'update']" method="PUT" >
 						<g:hiddenField name="version" value="${chamadoInstance?.version}" />
 						<g:render template="form"/>
 					</g:form>

@@ -118,59 +118,5 @@ class ChamadoController {
 		}
 		
 	}
-	
-	
-	/*@Transactional
-	def update(Chamado chamadoInstance) {
-		if (chamadoInstance == null) {
-			notFound()
-			return
-		}
-
-		if (chamadoInstance.hasErrors()) {
-			respond chamadoInstance.errors, view:'edit'
-			return
-		}
-
-		chamadoInstance.save flush:true
-
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.updated.message', args: [message(code: 'chamado.label', default: 'Chamado'), chamadoInstance])
-				redirect(action: "show", id: chamadoInstance?.id)
-			}
-			'*'{ respond chamadoInstance, [status: OK] }
-		}
-	}*/
-
-	/*@Transactional
-	def delete(Chamado chamadoInstance) {
-
-		if (chamadoInstance == null) {
-			notFound()
-			return
-		}
-
-		try{
-			chamadoInstance.delete flush:true
-		}catch (org.springframework.dao.DataIntegrityViolationException e){
-			Chamado.withSession { session ->
-				session.clear()
-			}
-			flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'chamado.label', default: 'Chamado'), chamadoInstance.id])
-			redirect(action: "index")
-			return
-		}
-
-
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.deleted.message', args: [message(code: 'chamado.label', default: 'Chamado'), chamadoInstance.id])
-				redirect action:"index", method:"GET"
-			}
-			'*'{ render status: NO_CONTENT }
-		}
-	}*/
-
 
 }

@@ -10,11 +10,11 @@
 	<div class="col-lg-10">
 		<div class="form-group required">
 			<label for="nomeSolicitante" class="col-sm-2 control-label">
-				<g:message code="chamado.matricula.label" default="Matrícula" />
+				<g:message code="chamado.matricula.label" default="Matrícula/Login" />
 				<span class="required-indicator">*</span>
 			</label>
 			<div class="col-sm-5">
-				<p class="form-control-static"> ${session?.usuario} (matricula tal..) </p>
+				<p class="form-control-static"> ${session?.usuario} </p>
 				<g:hasErrors bean="${chamadoInstance}" field="nomeSolicitante">
 					<span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="nomeSolicitante" as="list" /></span>
 				</g:hasErrors>
@@ -75,7 +75,7 @@
 </div>
 
 
-<div class="col-lg-12 well">
+%{--<div class="col-lg-12 well">
 	<div class="col-lg-2">
 		<h4> <em> Dados do Equipamento </em> </h4>
 	</div>
@@ -86,11 +86,7 @@
 				<span class="required-indicator">*</span>
 			</label>
 			<div class="col-sm-5">
-				<g:textField class="form-control input-sm" name="equipamento" required="" value="${params?.equipamento}"/>
-
-				%{--<g:hasErrors bean="${chamadoInstance}" field="equipamento">
-                    <span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="equipamento" as="list" /></span>
-                </g:hasErrors>--}%
+				<g:textField class="form-control input-sm" name="equipamento" required="" value="${params?.equipamento}dadasd"/>
 			</div>
 
 			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
@@ -103,10 +99,6 @@
 			</label>
 			<div class="col-sm-5">
 				<g:textField class="form-control input-sm" name="tombamento" required="" value="${params?.tombamento}"/>
-
-				%{--<g:hasErrors bean="${chamadoInstance}" field="tombamento">
-                    <span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="tombamento" as="list" /></span>
-                </g:hasErrors>--}%
 			</div>
 
 			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
@@ -119,10 +111,6 @@
 			</label>
 			<div class="col-sm-5">
 				<g:textField class="form-control input-sm" name="setor" required="" value="${params?.setor}"/>
-
-				%{--<g:hasErrors bean="${chamadoInstance}" field="setor">
-                    <span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="setor" as="list" /></span>
-                </g:hasErrors>--}%
 			</div>
 
 			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
@@ -130,7 +118,7 @@
 	</div>
 
 </div>
-
+--}%
 
 <div class="col-lg-12 well">
 	<div class="col-lg-2">
@@ -220,90 +208,4 @@
 
 </div>
 
-
-
-%{--
-<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'avaliacao', 'has-error')} required">
-	<label for="avaliacao" class="col-sm-2 control-label">
-		<g:message code="chamado.avaliacao.label" default="Avaliacao" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-5">
-		<g:textField class="form-control input-sm" name="avaliacao" required="" value="${chamadoInstance?.avaliacao}"/>
-
-		<g:hasErrors bean="${chamadoInstance}" field="avaliacao">
-			<span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="avaliacao" as="list" /></span>
-		</g:hasErrors>
-	</div>
-
-	<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
-</div>
-
-<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'ativo', 'has-error')} ">
-	<label for="ativo" class="col-sm-2 control-label">
-		<g:message code="chamado.ativo.label" default="Ativo" />
-		
-	</label>
-	<div class="col-sm-5">
-		<g:checkBox name="ativo" value="${chamadoInstance?.ativo}" />
-
-		<g:hasErrors bean="${chamadoInstance}" field="ativo">
-			<span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="ativo" as="list" /></span>
-		</g:hasErrors>
-	</div>
-
-	<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
-</div>
-
-		
-			<g:hiddenField name="cadastradoPor" value="${session.usuario?.id}"  />
-		
-<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'ultimaAtualizacaoPor', 'has-error')} required">
-	<label for="ultimaAtualizacaoPor" class="col-sm-2 control-label">
-		<g:message code="chamado.ultimaAtualizacaoPor.label" default="Ultima Atualizacao Por" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-5">
-		<g:select id="ultimaAtualizacaoPor" name="ultimaAtualizacaoPor.id" from="${br.edu.unirn.nds.chamado.acesso.Usuario.list()}" optionKey="id" required="" value="${chamadoInstance?.ultimaAtualizacaoPor?.id}" class="many-to-one form-control input-sm"/>
-
-		<g:hasErrors bean="${chamadoInstance}" field="ultimaAtualizacaoPor">
-			<span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="ultimaAtualizacaoPor" as="list" /></span>
-		</g:hasErrors>
-	</div>
-
-	<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
-</div>
-
-<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'desativadoPor', 'has-error')} required">
-	<label for="desativadoPor" class="col-sm-2 control-label">
-		<g:message code="chamado.desativadoPor.label" default="Desativado Por" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-5">
-		<g:select id="desativadoPor" name="desativadoPor.id" from="${br.edu.unirn.nds.chamado.acesso.Usuario.list()}" optionKey="id" required="" value="${chamadoInstance?.desativadoPor?.id}" class="many-to-one form-control input-sm"/>
-
-		<g:hasErrors bean="${chamadoInstance}" field="desativadoPor">
-			<span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="desativadoPor" as="list" /></span>
-		</g:hasErrors>
-	</div>
-
-	<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
-</div>
-
-<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'dataDesativacao', 'has-error')} required">
-	<label for="dataDesativacao" class="col-sm-2 control-label">
-		<g:message code="chamado.dataDesativacao.label" default="Data Desativacao" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-5">
-		<g:datePicker name="dataDesativacao" precision="day"  value="${chamadoInstance?.dataDesativacao}"  />
-
-		<g:hasErrors bean="${chamadoInstance}" field="dataDesativacao">
-			<span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="dataDesativacao" as="list" /></span>
-		</g:hasErrors>
-	</div>
-
-	<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
-</div>
---}%
 

@@ -5,6 +5,7 @@ import grails.transaction.Transactional
 import javax.servlet.http.HttpSession
 
 import br.edu.unirn.nds.chamado.base.Chamado
+import br.edu.unirn.nds.chamado.problema.Problema;
 
 @Transactional
 class ChamadoService {
@@ -14,7 +15,7 @@ class ChamadoService {
 	Chamado saveChamado(Map params, HttpSession session){
 		def chamadoInstance = new Chamado(params)
 		chamadoInstance.with{
-			problema = params?.problema
+			problema = Problema.get( params?.problema?.id )
 			titulo = params?.titulo
 			nomeSolicitante = params?.nomeSolicitante
 			emailSolicitante = params?.emailSolicitante
