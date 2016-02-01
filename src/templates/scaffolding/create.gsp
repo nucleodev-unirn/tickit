@@ -33,7 +33,7 @@
 							Alguns campos precisam ser corrigidos.
 						</div>
 					</g:hasErrors>
-					<g:form class="form-horizontal" novalidate="novalidate" name="${propertyName}Form" url="[resource:${propertyName}, action:'save']" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+					<g:form useToken="true" class="form-horizontal" novalidate="novalidate" name="${propertyName}Form" url="[resource:${propertyName}, action:'save']" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
 						<g:render template="form"/>
 					</g:form>
 				</div>

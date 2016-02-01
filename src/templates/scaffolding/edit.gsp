@@ -43,7 +43,7 @@
 							Alguns campos precisam ser corrigidos.
 						</div>
 					</g:hasErrors>
-					<g:form class="form-horizontal" novalidate="novalidate" name="${propertyName}Form" url="[resource:${propertyName}, action:'update']" method="PUT" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+					<g:form useToken="true" class="form-horizontal" novalidate="novalidate" name="${propertyName}Form" url="[resource:${propertyName}, action:'update']" method="PUT" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
 						<g:hiddenField name="version" value="\${${propertyName}?.version}" />
 						<g:render template="form"/>
 					</g:form>
