@@ -37,7 +37,7 @@
 							</ul>
 						</div>
 					</g:hasErrors>
-					<g:form class="form-horizontal" novalidate="novalidate" name="chamadoInstanceForm" url="[resource:chamadoInstance, action:'save']" >
+					<g:form useToken="true" class="form-horizontal" novalidate="novalidate" name="chamadoInstanceForm" url="[resource:chamadoInstance, action:'save']" >
 						<div class="row">
 							<g:render template="form"/>
 						</div>

@@ -66,9 +66,7 @@
     </div>
 </nav>
 
-%{--<div class="content-wrapper">--}%
     <g:layoutBody/>
-%{--</div>--}%
 
 <!-- FOOTER -->
 <footer class="text-center" >
@@ -81,7 +79,7 @@
     </div>
 </footer>
 
-<g:render template="modalMail" />
+<g:render template="/layouts/modalMail" />
 
 </body>
 </html>

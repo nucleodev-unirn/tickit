@@ -11,14 +11,14 @@ class IndexController {
 
     def tutorial() {}
 	
-    def testMail() {
+    def contato() {
 		if(params?.email && params?.nome && params?.descricao){
 			mailService.sendMail {
 				to params?.email
 				subject "[UNIRN/TickIT] Recado Enviado para equipe NDS-UNIRN"
 				body 
 """Olá, ${params?.nome},
-Confirmamos o recebimento de seu recado através do sistema TickIT.
+Agradecemos o contato e confirmamos o recebimento de seu recado através do sistema TickIT.
 Sua mensagem foi a seguinte:
 
 ${params?.descricao}
@@ -29,7 +29,7 @@ Equipe NDS-UNIRN.
 """
 			}
 
-			flash.resposta = "Teste de email executado..."
+			flash.resposta = "Um email de confirmação foi enviado para ${flash.email}"
 			render view: 'index_carousel'
 			return
 		}

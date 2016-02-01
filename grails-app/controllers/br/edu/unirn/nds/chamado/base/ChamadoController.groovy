@@ -6,12 +6,14 @@ import grails.transaction.Transactional
 
 import org.codehaus.groovy.grails.commons.GrailsClassUtils
 
+import br.edu.unirn.nds.chamado.ChamadoService;
+
 @Transactional(readOnly = true)
 class ChamadoController {
 
 	static scaffold = true
 	
-	def chamadoService
+	ChamadoService chamadoService
 
 	def index(Integer max) {
 		println "\n\t\t ===== params:"
@@ -89,26 +91,32 @@ class ChamadoController {
 	
 	@Transactional
 	def save(Chamado chamadoInstance) {
-		if (chamadoInstance == null) {
-			notFound()
-			return
-		}
-		
-		chamadoInstance = chamadoService.saveChamado(params,  session)
-		chamadoInstance.save flush:true
-		
-		if (chamadoInstance.hasErrors()) {
-			respond chamadoInstance.errors, view:'create'
-			return
-		}
-
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.created.message', args: [message(code: 'chamado.label', default: 'Chamado'), chamadoInstance])
-				redirect(action: "show", id: chamadoInstance?.id)
+		withForm{
+			if (chamadoInstance == null) {
+				notFound()
+				return
 			}
-			'*' { respond chamadoInstance, [status: CREATED] }
+
+			chamadoInstance = chamadoService.saveChamado(params,  session)
+			chamadoInstance.save flush:true
+
+			if (chamadoInstance.hasErrors()) {
+				respond chamadoInstance.errors, view:'create'
+				return
+			}
+
+			request.withFormat {
+				form multipartForm {
+					flash.message = message(code: 'default.created.message', args: [message(code: 'chamado.label', default: 'Chamado'), chamadoInstance])
+					redirect(action: "show", id: chamadoInstance?.id)
+				}
+				'*' { respond chamadoInstance, [status: CREATED] }
+			}
+		}.invalidToken{
+			flash.message = "Requisição inválida. Por favor, Tente reiniciar a operação."
+			redirect action:"create"
 		}
+		
 	}
 	
 	
