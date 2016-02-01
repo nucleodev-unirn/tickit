@@ -20,7 +20,7 @@
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Matrícula ou login do usuário logado"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'nomeSolicitante', 'has-error')} required">
@@ -36,7 +36,7 @@
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Nome do usuário logado"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'emailSolicitante', 'has-error')} required">
@@ -45,14 +45,14 @@
 				<span class="required-indicator">*</span>
 			</label>
 			<div class="col-sm-5">
-				<g:textField class="form-control input-sm" name="emailSolicitante" required="" value="${chamadoInstance?.emailSolicitante}"/>
+				<input type="email" class="form-control input-sm" name="emailSolicitante" required="" value="${chamadoInstance?.emailSolicitante}"/>
 
 				<g:hasErrors bean="${chamadoInstance}" field="emailSolicitante">
 					<span class="help-block error"><g:renderErrors bean="${chamadoInstance}" field="emailSolicitante" as="list" /></span>
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="E-mail VÁLIDO, para contato"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'setorSolicitante', 'has-error')} required">
@@ -89,7 +89,7 @@
 				<g:textField class="form-control input-sm" name="equipamento" required="" value="${params?.equipamento}dadasd"/>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Nome descritivo ou tipo/marca/modelo do equipamento"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group required">
@@ -101,7 +101,7 @@
 				<g:textField class="form-control input-sm" name="tombamento" required="" value="${params?.tombamento}"/>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Número de tombamento do equipamento, geralmente localizado em uma etiqueta colada em uma das faces do mesmo."> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group required">
@@ -113,7 +113,7 @@
 				<g:textField class="form-control input-sm" name="setor" required="" value="${params?.setor}"/>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor onde o equipamento está localizado"> <i class="fa fa-question"></i> </span>
 		</div>
 	</div>
 
@@ -138,7 +138,7 @@
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Título do chamado"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'categoriaChamado', 'has-error')} required">
@@ -154,7 +154,7 @@
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Categoria do Chamado"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group required">
@@ -170,7 +170,7 @@
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Tipo de Problema ou Sintoma que o equipamento está apresentando"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'tags', 'has-error')} required">
@@ -186,7 +186,7 @@
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Tags, palavras-chave relacionadas ao equipamento e/ou problema"> <i class="fa fa-question"></i> </span>
 		</div>
 
 		<div class="form-group ${hasErrors(bean: chamadoInstance, field: 'descricao', 'has-error')} required">
@@ -202,7 +202,7 @@
 				</g:hasErrors>
 			</div>
 
-			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Setor que será vinculado ao chamado"> <i class="fa fa-question"></i> </span>
+			<span class="btn btn-primary btn-sm" data-toggle="tooltip" title="Descrição detalhada do objeto que necessita de reparo ou manutenção"> <i class="fa fa-question"></i> </span>
 		</div>
 	</div>
 
