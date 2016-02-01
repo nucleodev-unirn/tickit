@@ -30,8 +30,13 @@ class ChamadoService {
 		if(!chamadoInstance.hasErrors()){
 			mailService.sendMail {
 				to chamadoInstance?.emailSolicitante
-				subject "[UNIRN/TickIT] Confirma��o de Abertura de Chamado"
-				body "Seu Chamado, ${chamadoInstance}, foi aberto com sucesso. \nPara detalhes, acesse www.nucleodev.unirn.edu.br/tickit"
+				subject "[UNIRN/TickIT] Confirmação de Abertura de Chamado"
+				body """Seu Chamado, ${chamadoInstance}, foi aberto com sucesso. \nPara detalhes, acesse www.nucleodev.unirn.edu.br/tickit
+
+-------------
+Esta é uma mensagem automática. Não é necessário respondê-la.
+NDS-UNIRN
+"""
 			}
 		}
 		
