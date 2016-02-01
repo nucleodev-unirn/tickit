@@ -1,7 +1,7 @@
 <div class="modal fade" id="modalMailId">
     <div class="modal-dialog ">
         <div class="modal-content">
-			<g:form name="mailForm" controller="index" action="testMail"
+			<g:form name="mailForm" controller="index" action="contato"
 				class="form-horizontal">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"

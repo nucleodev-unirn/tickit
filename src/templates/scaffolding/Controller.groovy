@@ -43,25 +43,30 @@ class ${className}Controller {
 
     @Transactional
     def save(${className} ${propertyName}) {
-        if (${propertyName} == null) {
-            notFound()
-            return
-        }
+		withForm{
+			if (${propertyName} == null) {
+				notFound()
+				return
+			}
 
-        if (${propertyName}.hasErrors()) {
-            respond ${propertyName}.errors, view:'create'
-            return
-        }
+			if (${propertyName}.hasErrors()) {
+				respond ${propertyName}.errors, view:'create'
+				return
+			}
 
-        ${propertyName}.save flush:true
+			${propertyName}.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
-                redirect(action: "edit", id: ${propertyName}?.id)
-            }
-            '*' { respond ${propertyName}, [status: CREATED] }
-        }
+			request.withFormat {
+				form multipartForm {
+					flash.message = message(code: 'default.created.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
+					redirect(action: "edit", id: ${propertyName}?.id)
+				}
+				'*' { respond ${propertyName}, [status: CREATED] }
+			}
+		}.invalidToken{
+			flash.message = "Requisição inválida. Por favor, tente reiniciar a operação"
+			redirect action:"create"
+		}
     }
 
     def edit(${className} ${propertyName}) {
@@ -70,54 +75,63 @@ class ${className}Controller {
 
     @Transactional
     def update(${className} ${propertyName}) {
-        if (${propertyName} == null) {
-            notFound()
-            return
-        }
+		withForm{
+			if (${propertyName} == null) {
+				notFound()
+				return
+			}
 
-        if (${propertyName}.hasErrors()) {
-            respond ${propertyName}.errors, view:'edit'
-            return
-        }
+			if (${propertyName}.hasErrors()) {
+				respond ${propertyName}.errors, view:'edit'
+				return
+			}
 
-        ${propertyName}.save flush:true
+			${propertyName}.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
-                redirect(action: "edit", id: ${propertyName}?.id)
-            }
-            '*'{ respond ${propertyName}, [status: OK] }
-        }
+			request.withFormat {
+				form multipartForm {
+					flash.message = message(code: 'default.updated.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
+					redirect(action: "edit", id: ${propertyName}?.id)
+				}
+				'*'{ respond ${propertyName}, [status: OK] }
+			}
+		}.invalidToken{
+			flash.message = "Requisição inválida. Por favor, tente reiniciar a operação"
+			redirect action:"edit"
+		}
     }
 
     @Transactional
     def delete(${className} ${propertyName}) {
+		withForm{
+			if (${propertyName} == null) {
+				notFound()
+				return
+			}
 
-        if (${propertyName} == null) {
-            notFound()
-            return
-        }
-
-        try{
-            ${propertyName}.delete flush:true
-        }catch (org.springframework.dao.DataIntegrityViolationException e){
-            ${className}.withSession { session ->
-                session.clear()
-            }
-            flash.error = message(code: 'default.not.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
-            redirect(action: "edit", id: params.id)
-            return
-        }
+			try{
+				${propertyName}.delete flush:true
+			}catch (org.springframework.dao.DataIntegrityViolationException e){
+				${className}.withSession { session ->
+					session.clear()
+				}
+				flash.error = message(code: 'default.not.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
+				redirect(action: "edit", id: params.id)
+				return
+			}
 
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+			request.withFormat {
+				form multipartForm {
+					flash.message = message(code: 'default.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
+					redirect action:"index", method:"GET"
+				}
+				'*'{ render status: NO_CONTENT }
+			}
+		}.invalidToken{
+			flash.message = "Requisição inválida. Por favor, tente reiniciar a operação"
+			redirect action:"show", id:${propertyName}?.id
+		}
     }
 
     protected void notFound() {
