@@ -96,7 +96,8 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
-        grails.serverURL = "http://nucleodev.unirn.edu.br:8080/tickit-0.1.1"
+//        grails.serverURL = "http://nucleodev.unirn.edu.br:8080/tickit-0.1.1"
+        grails.serverURL = "https://nds-tickit.herokuapp.com"
     }
 }
 
