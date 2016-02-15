@@ -74,6 +74,7 @@ grails.project.dependency.resolution = {
 		
 		compile ':heroku:1.0.1'
 		compile ':cloud-support:1.0.11'
+        compile "org.grails.plugins:database-session:1.2.1"
 
 //        Uncomment these to enable additional asset-pipeline capabilities
 //        compile ":sass-asset-pipeline:1.9.0"
