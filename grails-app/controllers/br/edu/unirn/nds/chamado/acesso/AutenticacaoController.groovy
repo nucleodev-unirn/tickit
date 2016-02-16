@@ -63,7 +63,6 @@ class AutenticacaoController {
         def usuario = Usuario.findByLoginAndTipoUsuario(params.matriculaPublica, TipoUsuario.COMUM)
         if(!usuario){
             flash.resposta = "Login ou Senha incorreto!"
-            log.info "Login ou Senha incorreto!"
             println """================= \nLogin ou Senha incorreto! \n========================"""
             redirect action: "index" , params: params
             return
@@ -74,21 +73,14 @@ class AutenticacaoController {
             switch (params?.cmd){
                 case "open":
                     destino = createLink(controller: 'chamado', action: 'create', absolute: true)
-                    log.info destino
-                    println """================= \n${destino} \n========================"""
                     break
                 case "view":
                     destino = createLink(controller: 'chamado', action: 'index', absolute: true)
-                    println """================= \n${destino} \n========================"""
-                    log.info destino
                     break
                 case "tutorial":
                     destino = createLink(controller: 'index', action: 'tutorial', absolute: true)
-                    println """================= \n${destino} \n========================"""
-                    log.info destino
                     break
                 default:
-                    println """================= \n default... volta ao index2 \n========================"""
                     redirect controller: "index", action: "index2"
                     return
                     break
