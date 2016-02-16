@@ -94,7 +94,8 @@ environments {
         grails.logging.jul.usebridge = true
     }
     production {
-        grails.logging.jul.usebridge = false
+//        grails.logging.jul.usebridge = false
+        grails.logging.jul.usebridge = true
         // TODO: grails.serverURL = "http://www.changeme.com"
 //        grails.serverURL = "http://nucleodev.unirn.edu.br:8080/tickit-0.1.1"
         grails.serverURL = "https://nds-tickit.herokuapp.com"
@@ -160,9 +161,9 @@ log4j = {
 
     List<String> loggers = []
     loggers.add('customAppender')
-    if (Environment.current.name == "development" || Environment.current.name == "test") {
+//    if (Environment.current.name == "development" || Environment.current.name == "test") {
         loggers.add('console')
-    }
+//    }
 
     root {
         debug loggers as String[]

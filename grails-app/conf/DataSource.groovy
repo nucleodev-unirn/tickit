@@ -22,17 +22,31 @@ environments {
             dialect='org.hibernate.dialect.PostgreSQLDialect'
             dbCreate = "update" // one of 'cadastrar', 'cadastrar-drop', 'update', 'validate', ''
 //            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-            url = "jdbc:postgresql://localhost:5432/tickit_develop"
+//            url = "jdbc:postgresql://localhost:5432/tickit_develop"
 //            url = "jdbc:postgresql://nucleodev.unirn.edu.br:5432/tickit_develop"
-            username='tickit_app_role'
-            password='tickit_app_role'
+//            username='tickit_app_role'
+//            password='tickit_app_role'
+
+            // configurações de acesso ao banco de dados no heroku.com
+            url = "jdbc:postgres://evnjpeywlsfyjs:spo8nIEOOBwICG5jm-wRBM5egn@ec2-54-225-223-40.compute-1.amazonaws.com:5432/deokbum1o7ipni"
+            username='evnjpeywlsfyjs'
+            password='spo8nIEOOBwICG5jm-wRBM5egn'
+
             loggingSql = true
+
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+//            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+
+            // configurações de acesso ao banco de dados no heroku.com
+            url = "jdbc:postgres://evnjpeywlsfyjs:spo8nIEOOBwICG5jm-wRBM5egn@ec2-54-225-223-40.compute-1.amazonaws.com:5432/deokbum1o7ipni"
+            username='evnjpeywlsfyjs'
+            password='spo8nIEOOBwICG5jm-wRBM5egn'
+
+            loggingSql = true
         }
     }
     production {
