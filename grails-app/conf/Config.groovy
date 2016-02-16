@@ -188,6 +188,7 @@ grails {
     }
 }
 
+grails.plugin.databasesession.enabled = false
 
 // configurações do plugin angularjs
 //grails.plugin.angularjs.version = "1.4.8"
