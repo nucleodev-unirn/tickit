@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="mainPublic">
+		%{--<meta name="layout" content="mainPublic">--}%
+		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'chamado.label', default: 'Chamado')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
@@ -26,16 +27,20 @@
 				</div>
 				<div class="box-body">
 					<div class="row">
-						<div class="col-xs-12">
-							<g:form action="index">
-								<div class="input-group margin-bottom-10">
-									<g:textField name="q" class="form-control input-sm  pull-right" placeholder="Pesquisar" style="width: 150px;" value="${query}"/>
-									<div class="input-group-btn">
-										<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+						<g:form action="index">
+							<div class="col-xs-12">
+									<div class="input-group margin-bottom-10">
+										<g:textField name="pesquisaSimples" class="form-control input-sm  pull-right" placeholder="Pesquisar" style="width: 150px;" value="${params?.pesquisaSimples}"/>
+										<div class="input-group-btn">
+											<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+										</div>
 									</div>
-								</div>
+									<a href="#pesquisaAvancadaCollapse" data-toggle="collapse" class="pull-right help-block collapse-btn ${hasQuery?'':'collapsed'}">Pesquisa avançada</a>
+							</div>
+							<div class="col-xs-12 margin-bottom-10 collapse" id="pesquisaAvancadaCollapse">
+								<g:render template="pesquisaAvancada"/>
+							</div>
 							</g:form>
-						</div>
 						<div class="col-xs-12">
 							<g:if test="${flash.message}">
 								<div class="message" role="status">${flash.message}</div>

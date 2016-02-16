@@ -16,76 +16,55 @@ class ChamadoController {
 	ChamadoService chamadoService
 
 	def index(Integer max) {
-		println "\n\t\t ===== params:"
-		params.each {println it}
 
-		if (params.q instanceof String) {
-			params.q = JSON.parse(params.q)
-		}
-		println "\n\tparams.q : \n${params.q}"
-
-		def hasQuery = false
 		params.max = Math.min(max ?: 10, 100)
-		//        def criteriaResult = EquipamentoChamado.createCriteria().list(params)
-		def criteriaResult = Chamado.createCriteria().list(params)
-		{
-			if (params?.q?.pequisaSimples) {
+		Chamado chamadoInstance = new Chamado()
+		def criteriaResult = Chamado.createCriteria().list(params) {
+
+			if(params?.pesquisaSimples){
 				or {
 					GrailsClassUtils?.getStaticPropertyValue(Chamado, "searchFilders")?.each {
-						if (property && Number.isAssignableFrom(property) || (property?.isPrimitive() && property != boolean)) {
-							if (property == Integer)
-								eq(it, params.q.pesquisaSimplesparams.toInterge())
-						} else if (property == String) {
-							ilike(it, params.q.pesquisaSimples + "%")
+						if (chamadoInstance && Number.isAssignableFrom(chamadoInstance) || (chamadoInstance?.isPrimitive() && chamadoInstance != boolean)) {
+							if (chamadoInstance == Integer)
+								eq(it, params.pesquisaSimples.toInterge())
+						} else if (chamadoInstance == String) {
+							ilike(it, params.pesquisaSimples + "%")
 						}
 					}
 				}
-			}
-			else
-			{
-				//                        createAlias("chamado", "c")
-				//                        createAlias("equipamento", "e")
-				and
-				{
-					if (params?.q?.setorSolicitante) {
-						hasQuery = true
-						eq("setor", Setor.get(params.q.setorSolicitante?.toLong()))
+			}else {
+				and{
+					if(params?.dataInicio && params?.dataFim)
+						between("dateCreated",params?.dataInicio,params?.dataFim)
+
+					if(params?.setorSolicitante){
+						createAlias("setorSolicitante","setorSolicitante")
+						eq("setorSolicitante.id",params?.setorSolicitante?.id?.toLong())
 					}
-					/*if (params?.q?.equipamento) {
-					 hasQuery = true
-					 eq("equipamento", Equipamento.get(params.q.equipamento?.toLong()))
-					 }
-					 if (params?.q?.tipoEquipamento) {
-					 hasQuery = true
-					 eq("e.tipoEquipamento", TipoEquipamento.get(params.q.tipoEquipamento?.toLong()))
-					 }
-					 if (params?.q?.locado) {
-					 hasQuery = true
-					 eq("e.locado", params.q.locado)
-					 }*/
-					if (params?.q?.categoriaChamado) {
-						hasQuery = true
-						eq("categoriaChamado", CategoriaChamado.get(params.q.categoriaChamado?.toLong()))
+					if(params?.cadastradoPor){
+						createAlias("cadastradoPor","cadastradoPor")
+						createAlias("cadastradoPor.funcionario","funcionario")
+						createAlias("funcionario.pessoa","pessoa")
+						ilike("pessoa.nome", "%"+params?.cadastradoPor+"%")
 					}
-					if (params?.q?.statusChamado) {
-						hasQuery = true
-						eq("statusChamado", Chamado.get(params.q.statusChamado?.toLong()))
+					/*if(params?.equipamento){
+						createAlias("equipamento","equipamento")
+						eq("equipamento.id",params?.equipamento?.id?.toLong())
 					}
-					if (params?.q?.nomeSolicitante) {
-						hasQuery = true
-						eq("nomeSolicitante", Chamado.get(params.q.nomeSolicitante?.toLong()))
+					if(params?.tipoEquipamento)
+					if(params?.equipamento){}*/
+					if(params?.categoriaChamado){
+						createAlias("categoriaChamado","categoriaChamado")
+						eq("categoriaChamado.id",params?.categoriaChamado?.id?.toLong())
 					}
-					if (params?.q?.dataInicial && params.q?.dataFinal) {
-						hasQuery = true
-						between("dateCreated", params.q.dataIncial, params.q.dataFinal)
-					}
+					if(params?.ativo)
+						eq("ativo",params?.ativo?.toBoolean())
 				}
 			}
+
 		}
 
-		println "\n\t\t ===== criteriaResult : \n${criteriaResult}"
-
-		respond criteriaResult, model: [chamadoInstanceCount: criteriaResult.totalCount, q: params.q, hasQuery: hasQuery]
+		respond criteriaResult, model:[chamadoInstanceCount: criteriaResult.totalCount, params:params]
 	}
 
 	
@@ -113,7 +92,7 @@ class ChamadoController {
 				'*' { respond chamadoInstance, [status: CREATED] }
 			}
 		}.invalidToken{
-			flash.message = "Requisição inválida. Por favor, Tente reiniciar a operação."
+			flash.message = "Requisiï¿½ï¿½o invï¿½lida. Por favor, Tente reiniciar a operaï¿½ï¿½o."
 			redirect action:"create"
 		}
 		
