@@ -12,6 +12,8 @@
 //= require carrossel/ie-emulation-modes-warning
 //= require carrossel/holder.min.js
 //= require_self
+// require datapicker/bootstrap-datepicker
+// require jquery.ui.datepicker-pt-BR
 
 var TICKIT = (function($) {
 
@@ -43,8 +45,28 @@ var TICKIT = (function($) {
 		$('html,body').animate({scrollTop:0}, 'slow');
 	}
 
+	var componentes ={
+		carregarCalendario: function () {
+			$.datepicker.regional[ "pt-BR" ];
+			$("input[name$='_datePicker']").focusin(function(){
+				$("#ui-datepicker-div").css('z-index','9999');
+			});
+
+			$("input[name$='_datePicker']").datepicker({
+				dateFormat: 'dd/mm/yy',
+				onSelect: function (dateText, inst) {
+					var name = inst.id.split("_")[0];
+					$("#" + name + "_day").val(inst.selectedDay);
+					$("#" + name + "_month").val(inst.selectedMonth + 1);
+					$("#" + name + "_year").val(inst.selectedYear);
+				}
+			});
+		}
+	};
+
 })(jQuery);
 
 $(document).ready(function(){
 	TICKIT.init();
+	componentes.carregarCalendario();
 });
