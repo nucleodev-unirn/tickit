@@ -37,8 +37,9 @@ grails.project.dependency.resolution = {
 
         grailsPlugins()
         grailsHome()
-        mavenLocal()
         grailsCentral()
+		
+        mavenLocal()
         mavenCentral()
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
@@ -70,6 +71,10 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
         compile ":jquery-ui:1.10.4"
+		
+		compile ':heroku:1.0.1'
+		compile ':cloud-support:1.0.11'
+        compile "org.grails.plugins:database-session:1.2.1"
 
 //        Uncomment these to enable additional asset-pipeline capabilities
 //        compile ":sass-asset-pipeline:1.9.0"

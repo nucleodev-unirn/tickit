@@ -63,6 +63,7 @@ class AutenticacaoController {
         def usuario = Usuario.findByLoginAndTipoUsuario(params.matriculaPublica, TipoUsuario.COMUM)
         if(!usuario){
             flash.resposta = "Login ou Senha incorreto!"
+            log.info "Login ou Senha incorreto!"
             redirect action: "index" , params: params
             return
         }else{
@@ -72,12 +73,15 @@ class AutenticacaoController {
             switch (params?.cmd){
                 case "open":
                     destino = createLink(controller: 'chamado', action: 'create', absolute: true)
+                    log.info destino
                     break
                 case "view":
                     destino = createLink(controller: 'chamado', action: 'index', absolute: true)
+                    log.info destino
                     break
                 case "tutorial":
                     destino = createLink(controller: 'index', action: 'tutorial', absolute: true)
+                    log.info destino
                     break
                 default:
                     redirect controller: "index", action: "index2"
@@ -92,6 +96,7 @@ class AutenticacaoController {
     def logout(){
         session.invalidate()
         flash.resposta = "Sessão Encerrada"
+        log.info "Sessão Encerrada"
         redirect controller: 'index', action: "index2"
     }
 }
